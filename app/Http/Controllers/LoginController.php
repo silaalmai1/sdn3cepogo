@@ -12,22 +12,41 @@ class LoginController extends Controller
     {
         return view('login');
     }
+
     public function login(Request $request)
     {
+        // 🔒 validasi input
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        // cek user di database
         $user = DB::table('users')
             ->where('email', $request->email)
             ->first();
 
-            if($user && Hash::check($request->password, $user->password)){
-                session(['admin' => $user->email]);
-                return redirect('/admin');
-            }
-            return back()->with('error', 'Email atau password salah');
-            }
-            public function logout()
-            {
-                session()->forget('admin');
-                return redirect('/login');
-            }
-}
+        // cek password hash
+        if ($user && Hash::check($request->password, $user->password)) {
 
+            // 🔒 keamanan session
+            $request->session()->regenerate();
+
+            // simpan session login
+            session([
+                'admin' => true,
+                'email' => $user->email
+            ]);
+
+            return redirect('/admin');
+        }
+
+        return back()->with('error', 'Email atau password salah');
+    }
+
+    public function logout()
+    {
+        session()->flush(); // hapus semua session
+        return redirect('/login');
+    }
+}

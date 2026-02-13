@@ -35,6 +35,8 @@
         }
         .nav-link{
             font-weight:500;
+            font-size:20px;
+            letter-spacing:0.5px;
         }
         .nav-link.active{
             color:#0d6efd !important;
@@ -168,6 +170,87 @@
            position:relative;  
            overflow:hidden; 
         }
+        /* ===== SAMBUTAN KEPALA SEKOLAH ===== */
+
+        .card-sambutan{
+            background:#ffffff;
+            border-radius:18px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.12);
+            border:none;
+       }
+       .sambutan-title{
+           font-size:34px;
+           font-weight:800;
+      } 
+       .sambutan-sub{
+           font-size:18px;
+     }
+       .sambutan-text{
+           font-size:17px;
+           line-height:1.8;
+            text-align:justify;
+     }
+/* ===== WRAPPER DETAIL ===== */
+.detail-wrapper{
+    background:white;
+    padding:50px;
+    border-radius:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* gambar */
+.detail-img{
+    border-radius:20px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.15);
+    transition:0.4s;
+}
+.detail-img:hover{
+    transform:scale(1.03);
+}
+
+/* judul */
+.detail-title{
+    font-size:48px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+/* subtitle */
+.detail-subtitle{
+    font-size:22px;
+    color:#0d6efd;
+    font-weight:600;
+    margin-bottom:25px;
+}
+
+/* isi teks */
+.detail-text{
+    font-size:20px;
+    line-height:2;
+    text-align:justify;
+    color:#444;
+}
+
+/* tombol kembali */
+.btn-back{
+    background:#f1f3f5;
+    border:none;
+    padding:10px 22px;
+    border-radius:12px;
+    font-weight:600;
+    transition:0.3s;
+}
+.btn-back:hover{
+    background:#0d6efd;
+    color:white;
+}
+
+/* garis pemisah */
+.detail-divider{
+    height:4px;
+    width:80px;
+    background:#0d6efd;
+    border-radius:10px
 
         
 </style>

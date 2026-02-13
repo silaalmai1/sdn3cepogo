@@ -40,7 +40,7 @@
 
         {{-- Logo --}}
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="/logo.png" width="45" class="me-2">
+            <img src="images/logo.png" width="90" class="me-2">
         </a>
 
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
@@ -51,11 +51,11 @@
             <ul class="navbar-nav mx-auto gap-3">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="/">Beranda</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Beranda</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tentang</a>
+                    <a class="nav-link {{ request()->is('tentang') ? 'active' : '' }}" href="/tentang">Tentang</a>
                 </li>
 
                 <li class="nav-item">
@@ -63,7 +63,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Prestasi</a>
+                     <a class="nav-link {{ request()->is('prestasi') ? 'active' : '' }}" href="/prestasi">Prestasi</a>
+                </li>
                 </li>
 
                 <li class="nav-item">

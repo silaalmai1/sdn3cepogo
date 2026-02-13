@@ -41,7 +41,9 @@
     <a href="#">Berita</a>
     <a href="#">Guru</a>
     <a href="#">Galeri</a>
-    <a href="/logout">Logout</a>
+    <div class="ms-auto">
+    <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+</div>
 </div>
 
 <div class="content">
