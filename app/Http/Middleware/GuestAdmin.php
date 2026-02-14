@@ -9,11 +9,13 @@ class GuestAdmin
 {
     public function handle(Request $request, Closure $next)
     {
-        // kalau SUDAH login jangan ke halaman login lagi
+        // Kalau SUDAH login, jangan ke halaman login
+        // Arahkan ke dashboard (/admin) saja
         if (session()->has('admin')) {
             return redirect('/admin');
         }
 
+        // Kalau BELUM login, tampilkan halaman login
         return $next($request);
     }
 }

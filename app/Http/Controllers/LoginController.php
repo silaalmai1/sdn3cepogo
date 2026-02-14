@@ -47,6 +47,41 @@ class LoginController extends Controller
     public function logout()
     {
         session()->flush(); // hapus semua session
-        return redirect('/login');
+        return redirect('/');
+    }
+
+    public function registerIndex()
+    {
+        return view('register');
+    }
+
+    public function register(Request $request)
+    {
+        // 🔒 validasi input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        // cek apakah email sudah terdaftar
+        $existingUser = DB::table('users')
+            ->where('email', $request->email)
+            ->first();
+
+        if ($existingUser) {
+            return back()->with('error', 'Email sudah terdaftar');
+        }
+
+        // buat user baru
+        DB::table('users')->insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return redirect('/login')->with('success', 'Akun berhasil dibuat! Silakan login');
     }
 }

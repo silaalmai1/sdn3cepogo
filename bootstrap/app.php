@@ -14,12 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'adminLogin' => AdminLogin::class,
-        ]);
-        $middleware->alias([
-            'adminLogin' => AdminLogin::class,
             'guestAdmin' => \App\Http\Middleware\GuestAdmin::class,
-       ]);
-
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

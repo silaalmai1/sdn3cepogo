@@ -1,7 +1,7 @@
 <div class="header-fixed">
 {{-- TOPBAR --}}
 <div class="topbar py-2">
-    <div class="container d-flex justify-content-between align-items-center">
+    <div class="container-fluid px-3 d-flex justify-content-between align-items-center">
 
         <div class="d-flex gap-4">
             <div>
@@ -39,8 +39,8 @@
     <div class="container">
 
         {{-- Logo --}}
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="images/logo.png" width="90" class="me-2">
+        <a class="navbar-brand d-flex align-items-center logo-brand" href="#">
+            <img src="images/logo.png" width="90" class="me-2 logo-img">
         </a>
 
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
@@ -59,12 +59,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Guru</a>
+                    <a class="nav-link {{ request()->is('guru') ? 'active' : '' }}" href="/guru">Guru</a>
                 </li>
 
                 <li class="nav-item">
                      <a class="nav-link {{ request()->is('prestasi') ? 'active' : '' }}" href="/prestasi">Prestasi</a>
-                </li>
                 </li>
 
                 <li class="nav-item">
@@ -72,15 +71,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Artikel</a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link" href="#">Berita</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Galeri</a>
+                    <a class="nav-link {{ request()->is('galeri') ? 'active' : '' }}" href="/galeri">Galeri</a>
                 </li>
 
                 <li class="nav-item">

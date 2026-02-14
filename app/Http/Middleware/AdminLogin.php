@@ -9,7 +9,9 @@ class AdminLogin
 {
     public function handle(Request $request, Closure $next)
     {
+        // Cek apakah user sudah login (ada session admin)
         if (!session()->has('admin')) {
+            // Jika belum login, redirect ke halaman login
             return redirect('/login');
         }
 

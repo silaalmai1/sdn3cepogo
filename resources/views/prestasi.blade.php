@@ -1,52 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5 mt-3">
+                <h2 class="guru-section-title">Daftar Prestasi Terbaru</h2>
+                <p class="guru-section-subtitle">{{ $prestasis->count() }} Pencapaian Gemilang</p>
+            </div>
 
-<section class="container py-5">
-    <div class="text-center mb-5">
-        <h1 class="fw-bold">Prestasi Sekolah</h1>
-        <p>Daftar prestasi siswa SD Negeri 1-3 Cepogo</p>
-    </div>
-
-    <div class="row g-4">
-
-        <!-- Card Prestasi -->
-        <div class="col-md-4">
-            <div class="card prestasi-card h-100">
-                <img src="/images/lombafls3n.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="fw-bold">Juara 1 Menyanyi Solo</h5>
-                    <p class="text-muted">Tingkat Kabupaten - 2025</p>
-                    <p>Siswa berhasil meraih juara 1 dalam lomba pramuka tingkat kecamatan.</p>
-                    <a href="/prestasi-detail" class="btn btn-primary mt-3">Lihat Selengkapnya</a>
-
-                </div>
+            <div class="row g-4">
+                @forelse($prestasis as $prestasi)
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card prestasi-card h-100">
+                            <img src="{{ $prestasi->gambar ? asset('storage/' . $prestasi->gambar) : asset('images/placeholder.jpg') }}"
+                                class="card-img-top" style="height: 240px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-2">
+                                    <span class="badge mb-2">{{ $prestasi->tingkat }}</span>
+                                </div>
+                                <h5 class="card-title">{{ $prestasi->judul }}</h5>
+                                <p class="card-text text-muted mb-3">
+                                    <small>Tahun {{ $prestasi->tahun }}</small>
+                                </p>
+                                <p class="card-text flex-grow-1" style="font-size: 14px; line-height: 1.5;">
+                                    {{ Str::limit($prestasi->deskripsi_singkat, 120) }}
+                                </p>
+                                <a href="/prestasi/{{ $prestasi->slug }}" class="btn btn-primary btn-sm mt-3">
+                                    <i class="bi bi-arrow-right"></i> Baca Selengkapnya
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-12 text-center py-5">
+                        <p class="text-muted" style="font-size: 18px;">Belum ada prestasi yang ditampilkan</p>
+                    </div>
+                @endforelse
             </div>
         </div>
-
-        <div class="col-md-4">
-            <div class="card prestasi-card h-100">
-                <img src="/images/prestasi2.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="fw-bold">Juara 2 Olimpiade Matematika</h5>
-                    <p class="text-muted">Tingkat Kabupaten - 2023</p>
-                    <p>Prestasi membanggakan di bidang akademik matematika.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card prestasi-card h-100">
-                <img src="/images/prestasi3.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="fw-bold">Juara 3 Lomba Tari</h5>
-                    <p class="text-muted">Tingkat Provinsi - 2023</p>
-                    <p>Siswa menunjukkan bakat luar biasa di bidang seni tari.</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
+    </section>
 @endsection
