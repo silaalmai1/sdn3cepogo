@@ -327,10 +327,6 @@
                 <i class="fas fa-chalkboard-user"></i>
                 <span>Guru</span>
             </a>
-            <a href="#" class="disabled-link">
-                <i class="fas fa-newspaper"></i>
-                <span>Berita</span>
-            </a>
             <a href="/admin/galeri" class="{{ request()->is('admin/galeri*') ? 'active' : '' }}">
                 <i class="fas fa-images"></i>
                 <span>Galeri</span>

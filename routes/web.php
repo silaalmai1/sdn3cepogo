@@ -12,6 +12,9 @@ Route::get('/', [HomeController::class, 'index']);
  Route::get('/tentang', function () {
     return view('tentang');
 });
+Route::get('/kontak', function () {
+    return view('kontak');
+})->name('kontak');
 Route::get('/guru', [GuruController::class, 'showPublic'])->name('guru');
 Route::get('/prestasi', [PrestasiController::class, 'showPublic'])->name('prestasi');
 
