@@ -12,6 +12,34 @@
         "Noto Color Emoji";
 }
 
+/* Navbar */
+.navbar-main .nav-link {
+    font-size: 12px !important;
+    font-weight: 500;
+    padding-top: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
+}
+
+.navbar-brand img.logo-img {
+    width: 85px !important;
+}
+
+/* Topbar */
+.topbar {
+    font-size: 13px !important;
+}
+
+.topbar-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+}
+
+.topbar-item i {
+    font-size: 12px;
+}
+
 /* Custom styles for prestasi cards */
 .prestasi-card {
     transition:

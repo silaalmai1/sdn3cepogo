@@ -1,20 +1,20 @@
-<div class="header-fixed">
+<div class="d-none d-md-block">
     {{-- TOPBAR --}}
     <div class="topbar py-2">
         <div class="container-fluid px-3 d-flex justify-content-between align-items-center">
 
-            <div class="d-flex gap-4">
-                <div>
+            <div class="d-flex gap-3">
+                <div class="topbar-item">
                     <i class="fa-solid fa-phone text-primary"></i>
                     081390788465
                 </div>
 
-                <div>
+                <div class="topbar-item">
                     <i class="fa-solid fa-envelope text-primary"></i>
                     sdn1.3cepogo@gmail.com
                 </div>
 
-                <div>
+                <div class="topbar-item">
                     <i class="fa-solid fa-location-dot text-primary"></i>
                     Desa Cepogo RT. 04 RW. 10, Kec. Kembang, Kab. Jepara, Prov. Jawa Tengah
                 </div>
@@ -32,15 +32,16 @@
 
         </div>
     </div>
+</div>
 
-
-    {{-- NAVBAR --}}
-    <nav class="navbar navbar-expand-lg navbar-main">
+{{-- NAVBAR (sticky) --}}
+<div class="navbar-sticky">
+    <nav class="navbar navbar-expand-lg navbar-main py-3">
         <div class="container">
 
             {{-- Logo --}}
-            <a class="navbar-brand d-flex align-items-center logo-brand" href="#">
-                <img src="images/logo.png" width="90" class="me-2 logo-img">
+            <a class="navbar-brand d-flex align-items-center logo-brand" href="/">
+                <img src="{{ asset('images/logo.png') }}" width="60" class="me-2 logo-img">
             </a>
 
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
@@ -48,7 +49,7 @@
             </button>
 
             <div id="menu" class="collapse navbar-collapse">
-                <ul class="navbar-nav mx-auto gap-3">
+                <ul class="navbar-nav mx-auto gap-2">
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Beranda</a>
@@ -68,7 +69,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ekstrakurikuler</a>
+                        <a class="nav-link {{ request()->is('ekstrakulikuler') ? 'active' : '' }}"
+                            href="/ekstrakulikuler">Ekstrakurikuler</a>
                     </li>
 
                     <li class="nav-item">
@@ -83,8 +85,9 @@
 
 
                 <button id="darkToggle" class="btn">
-                    <i id="darkIcon" class="fa-regular fa-moon fs-4"></i>
+                    <i id="darkIcon" class="fa-regular fa-moon fs-5"></i>
                 </button>
             </div>
         </div>
     </nav>
+</div>

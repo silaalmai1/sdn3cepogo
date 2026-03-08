@@ -3,7 +3,7 @@
 @section('content')
     <section class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5 fw-bold">Hubungi Kami</h2>
+            <h2 class="text-center mb-5 fw-semibold">Hubungi Kami</h2>
 
             <div class="row g-4">
                 <!-- Informasi Kontak -->

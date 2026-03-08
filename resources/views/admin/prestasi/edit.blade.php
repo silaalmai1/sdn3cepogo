@@ -38,15 +38,9 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label fw-bold">Deskripsi Singkat</label>
-                <textarea class="form-control" name="deskripsi_singkat" rows="2" required>{{ $prestasi->deskripsi_singkat }}</textarea>
-                <small class="text-muted">Deskripsi yang ditampilkan di kartu prestasi</small>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label fw-bold">Deskripsi Lengkap</label>
+                <label class="form-label fw-bold">Deskripsi</label>
                 <textarea class="form-control" name="deskripsi_lengkap" rows="6" required>{{ $prestasi->deskripsi_lengkap }}</textarea>
-                <small class="text-muted">Deskripsi detail untuk halaman detail prestasi</small>
+                <small class="text-muted">Deskripsi prestasi (akan dipotong otomatis di halaman daftar prestasi)</small>
             </div>
 
             @if ($prestasi->gambar)

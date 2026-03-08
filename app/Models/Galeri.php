@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Galeri extends Model
 {
     protected $fillable = [
-        'judul', 'deskripsi', 'gambar', 'kategori'
+        'gambar', 'kategori', 'tipe', 'video_url', 'video_file', 'video_sumber'
     ];
 }

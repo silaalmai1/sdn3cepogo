@@ -33,13 +33,7 @@ class GuruController extends Controller
     {
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
-            'nip' => 'required|string|unique:gurus',
-            'posisi' => 'required|string|max:100',
-            'mata_pelajaran' => 'nullable|string|max:100',
-            'bio' => 'nullable|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'email' => 'nullable|email|max:255',
-            'no_telepon' => 'nullable|string|max:20',
         ]);
 
         // Handle file upload
@@ -69,13 +63,7 @@ class GuruController extends Controller
 
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
-            'nip' => 'required|string|unique:gurus,nip,' . $id,
-            'posisi' => 'required|string|max:100',
-            'mata_pelajaran' => 'nullable|string|max:100',
-            'bio' => 'nullable|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'email' => 'nullable|email|max:255',
-            'no_telepon' => 'nullable|string|max:20',
         ]);
 
         // Handle file upload

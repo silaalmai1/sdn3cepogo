@@ -2,19 +2,29 @@
 
 @section('content')
     <section class="hero-section">
+        <div class="hero-slideshow">
+            <div class="hero-slide" style="background-image: url('/images/hero.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('/images/hero2.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('/images/hero3.jpg')"></div>
+        </div>
         <div class="hero-overlay"></div>
-        <div class="container hero-content text-center text-white">
-            <p class="hero-subtitle">
-                Selamat Datang di Website
-            </p>
-            <h1 class="hero-title">
-                SD Negeri 1-3 Cepogo
-            </h1>
-            <p class="hero-address">
-                Desa Cepogo RT. 04 RW. 10, Kec. Kembang, Kab. Jepara, Prov. Jawa Tengah
-            </p>
-            <div class="mt-4">
-                <a href="#" class="btn btn-primary btn-lg me-2">Informasi Selengkapnya</a>
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                {{-- KIRI: Teks --}}
+                <div class="col-md-8 col-lg-6 text-white">
+                    <div class="hero-badge mb-3">
+                        <i class="bi bi-star-fill me-2"></i>Selamat Datang di Website
+                    </div>
+                    <h1 class="hero-title">SD Negeri 1-3 Cepogo</h1>
+                    <div class="hero-divider my-3"></div>
+                    <p class="hero-address">
+                        <i class="bi bi-geo-alt-fill me-1"></i>
+                        Desa Cepogo RT. 04 RW. 10, Kec. Kembang, Kab. Jepara, Prov. Jawa Tengah
+                    </p>
+                    <div class="mt-4">
+                        <a href="/tentang" class="btn btn-hero-primary me-2">Informasi Selengkapnya</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -23,28 +33,28 @@
     <section class="stats">
         <div class="container">
             <div class="row justify-content-center g-4">
-                <div class="col-md-3">
+                <div class="col-6 col-md-3">
                     <div class="stat-card">
                         <h2>63+</h2>
                         <p>Siswa Aktif</p>
                         <span></span>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-6 col-md-3">
                     <div class="stat-card">
                         <h2>{{ $totalGuru }}</h2>
                         <p>Guru & Tendik</p>
                         <span></span>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-6 col-md-3">
                     <div class="stat-card">
                         <h2>{{ $totalPrestasi }}</h2>
                         <p>Prestasi</p>
                         <span></span>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-6 col-md-3">
                     <div class="stat-card">
                         <h2>A</h2>
                         <p>Akreditasi</p>
@@ -55,19 +65,18 @@
         </div>
     </section>
 
-    <section class="py-5 bg-white">
+    <section class="pt-5 pb-3 bg-white">
         <div class="container">
-
-            <div class="text-center mb-5">
-                <h2 class="text-center fw-bold mb-2" style="font-size:40px;">Sambutan Kepala Sekolah</h2>
-                <p class="text-center text-muted" style="font-size:18px;">SD Negeri 1 & 3 Cepogo</p>
+            <div class="text-center mb-3">
+                <h2 class="text-center fw-semibold mb-2" style="font-size:28px;">Sambutan Kepala Sekolah</h2>
+                <p class="text-center text-muted" style="font-size:13px;">SD Negeri 1 & 3 Cepogo</p>
                 <div class="row">
                     <!-- KEPSEK SD 1 -->
                     <div class="col-md-6 mb-4">
-                        <div class="card card-sambutan p-4 h-100">
+                        <div class="card card-sambutan p-3 h-100">
                             <div class="text-center">
-                                <img src="/images/kepsek1.jpg" class="rounded-circle mb-3" width="170">
-                                <h5 class="mb-0">Nama Kepala SD 1</h5>
+                                <img src="/images/kepsek1.jpg" class="rounded-circle mb-2" width="110">
+                                <h5 class="mb-0" style="font-size:14px;">Nama Kepala SD 1</h5>
                                 <small class="text-muted">Kepala SD Negeri 1 Cepogo</small>
                             </div>
 
@@ -82,10 +91,10 @@
 
                     <!-- KEPSEK SD 3 -->
                     <div class="col-md-6 mb-4">
-                        <div class="card card-sambutan p-4 h-100">
+                        <div class="card card-sambutan p-3 h-100">
                             <div class="text-center">
-                                <img src="/images/kepsek2.jpg" class="rounded-circle mb-3" width="170">
-                                <h5 class="mb-0">Nama Kepala SD 3</h5>
+                                <img src="/images/kepsek2.jpg" class="rounded-circle mb-2" width="110">
+                                <h5 class="mb-0" style="font-size:14px;">Nama Kepala SD 3</h5>
                                 <small class="text-muted">Kepala SD Negeri 3 Cepogo</small>
                             </div>
 
@@ -102,17 +111,17 @@
     </section>
 
     {{-- SECTION PRESTASI TERBARU --}}
-    <section class="py-5 bg-light">
+    <section class="py-3 bg-white">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold mb-2" style="font-size:40px;">Prestasi Terbaru</h2>
-                <p class="text-muted" style="font-size:18px;">Pencapaian gemilang siswa kami</p>
+            <div class="text-center mb-3">
+                <h2 class="fw-semibold mb-2" style="font-size:28px;">Prestasi Terbaru</h2>
+                <p class="text-muted" style="font-size:13px;">Pencapaian gemilang siswa kami</p>
             </div>
 
             <div class="row g-4">
                 @if ($prestasiTerbaru->count() > 0)
                     @foreach ($prestasiTerbaru as $prestasi)
-                        <div class="col-md-4">
+                        <div class="col-12 col-sm-6 col-md-4">
                             <div class="card h-100 shadow-sm prestasi-card">
                                 @if ($prestasi->gambar)
                                     <img src="{{ asset('storage/' . $prestasi->gambar) }}" class="card-img-top"
@@ -143,7 +152,49 @@
             </div>
 
             <div class="text-center mt-5">
-                <a href="{{ route('prestasi') }}" class="btn btn-primary btn-lg">Lihat Semua Prestasi</a>
+                <a href="{{ route('prestasi') }}" class="btn btn-primary btn-sm px-4">Lihat Semua Prestasi</a>
+            </div>
+        </div>
+    </section>
+
+    {{-- SECTION EKSTRAKULIKULER --}}
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-semibold mb-2" style="font-size:28px;">Ekstrakulikuler</h2>
+                <p class="text-muted" style="font-size:13px;">Kegiatan pengembangan bakat dan minat siswa</p>
+            </div>
+            <div class="row g-3 justify-content-center">
+                <div class="col-6 col-md-2">
+                    <div class="card text-center p-3 h-100 border-0 shadow-sm ekskul-card">
+                        <i class="fa-solid fa-campground text-primary mb-2" style="font-size:28px;"></i>
+                        <p class="mb-0 fw-semibold" style="font-size:13px;">Pramuka</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2">
+                    <div class="card text-center p-3 h-100 border-0 shadow-sm ekskul-card">
+                        <i class="fa-solid fa-music text-primary mb-2" style="font-size:28px;"></i>
+                        <p class="mb-0 fw-semibold" style="font-size:13px;">Seni Tari</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2">
+                    <div class="card text-center p-3 h-100 border-0 shadow-sm ekskul-card">
+                        <i class="fa-solid fa-futbol text-primary mb-2" style="font-size:28px;"></i>
+                        <p class="mb-0 fw-semibold" style="font-size:13px;">Olahraga</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2">
+                    <div class="card text-center p-3 h-100 border-0 shadow-sm ekskul-card">
+                        <i class="fa-solid fa-palette text-primary mb-2" style="font-size:28px;"></i>
+                        <p class="mb-0 fw-semibold" style="font-size:13px;">Kesenian</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2">
+                    <div class="card text-center p-3 h-100 border-0 shadow-sm ekskul-card">
+                        <i class="fa-solid fa-computer text-primary mb-2" style="font-size:28px;"></i>
+                        <p class="mb-0 fw-semibold" style="font-size:13px;">Komputer</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

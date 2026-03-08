@@ -24,16 +24,38 @@ class GaleriController extends Controller
     // Admin - Store gallery item
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'judul' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'kategori' => 'required|string',
-        ]);
+        $tipe = $request->input('tipe', 'foto');
+        $videoSumber = $request->input('video_sumber', 'url');
 
-        if ($request->hasFile('gambar')) {
-            $gambarPath = $request->file('gambar')->store('galeri', 'public');
-            $validated['gambar'] = $gambarPath;
+        $rules = [
+            'kategori'     => 'required|string',
+            'tipe'         => 'required|in:foto,video',
+            'video_sumber' => 'nullable|in:file,url',
+        ];
+
+        if ($tipe === 'foto') {
+            $rules['gambar'] = 'required|image|mimes:jpeg,png,jpg,gif|max:5120';
+        } elseif ($videoSumber === 'file') {
+            $rules['video_file'] = 'required|file|mimes:mp4,mov,avi,mkv,webm|max:512000';
+        } else {
+            $rules['video_url'] = 'required|url';
+        }
+
+        $validated = $request->validate($rules);
+
+        // Handle file upload for photo
+        if ($tipe === 'foto' && $request->hasFile('gambar')) {
+            $validated['gambar'] = $request->file('gambar')->store('galeri', 'public');
+        }
+
+        // Handle video
+        if ($tipe === 'video') {
+            if ($videoSumber === 'file' && $request->hasFile('video_file')) {
+                $validated['video_file'] = $request->file('video_file')->store('galeri/video', 'public');
+                $validated['video_sumber'] = 'file';
+            } elseif ($videoSumber === 'url') {
+                $validated['video_sumber'] = 'url';
+            }
         }
 
         Galeri::create($validated);
@@ -52,21 +74,42 @@ class GaleriController extends Controller
     public function update(Request $request, $id)
     {
         $galeri = Galeri::findOrFail($id);
+        $tipe = $request->input('tipe', $galeri->tipe ?? 'foto');
+        $videoSumber = $request->input('video_sumber', $galeri->video_sumber ?? 'url');
 
-        $validated = $request->validate([
-            'judul' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'kategori' => 'required|string',
-        ]);
+        $rules = [
+            'kategori'     => 'required|string',
+            'tipe'         => 'required|in:foto,video',
+            'video_sumber' => 'nullable|in:file,url',
+        ];
 
-        if ($request->hasFile('gambar')) {
-            // Delete old image
+        if ($tipe === 'foto') {
+            $rules['gambar'] = 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120';
+        } elseif ($videoSumber === 'file') {
+            $rules['video_file'] = 'nullable|file|mimes:mp4,mov,avi,mkv,webm|max:512000';
+        } else {
+            $rules['video_url'] = 'required|url';
+        }
+
+        $validated = $request->validate($rules);
+
+        if ($tipe === 'foto' && $request->hasFile('gambar')) {
             if ($galeri->gambar && file_exists(storage_path('app/public/' . $galeri->gambar))) {
                 unlink(storage_path('app/public/' . $galeri->gambar));
             }
-            $gambarPath = $request->file('gambar')->store('galeri', 'public');
-            $validated['gambar'] = $gambarPath;
+            $validated['gambar'] = $request->file('gambar')->store('galeri', 'public');
+        }
+
+        if ($tipe === 'video' && $videoSumber === 'file' && $request->hasFile('video_file')) {
+            if ($galeri->video_file && file_exists(storage_path('app/public/' . $galeri->video_file))) {
+                unlink(storage_path('app/public/' . $galeri->video_file));
+            }
+            $validated['video_file'] = $request->file('video_file')->store('galeri/video', 'public');
+            $validated['video_sumber'] = 'file';
+            $validated['gambar'] = null;
+        } elseif ($tipe === 'video' && $videoSumber === 'url') {
+            $validated['video_sumber'] = 'url';
+            $validated['gambar'] = null;
         }
 
         $galeri->update($validated);
@@ -82,6 +125,11 @@ class GaleriController extends Controller
         // Delete image
         if ($galeri->gambar && file_exists(storage_path('app/public/' . $galeri->gambar))) {
             unlink(storage_path('app/public/' . $galeri->gambar));
+        }
+
+        // Delete video file
+        if ($galeri->video_file && file_exists(storage_path('app/public/' . $galeri->video_file))) {
+            unlink(storage_path('app/public/' . $galeri->video_file));
         }
 
         $galeri->delete();

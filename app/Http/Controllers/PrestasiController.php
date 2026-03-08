@@ -29,7 +29,6 @@ class PrestasiController extends Controller
             'judul' => 'required|string|max:255',
             'tingkat' => 'required|string|max:100',
             'tahun' => 'required|integer',
-            'deskripsi_singkat' => 'required|string',
             'deskripsi_lengkap' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -65,7 +64,6 @@ class PrestasiController extends Controller
             'judul' => 'required|string|max:255',
             'tingkat' => 'required|string|max:100',
             'tahun' => 'required|integer',
-            'deskripsi_singkat' => 'required|string',
             'deskripsi_lengkap' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);

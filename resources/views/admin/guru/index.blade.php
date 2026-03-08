@@ -23,10 +23,6 @@
                 <tr>
                     <th>Foto</th>
                     <th>Nama</th>
-                    <th>NIP</th>
-                    <th>Posisi</th>
-                    <th>Mata Pelajaran</th>
-                    <th>Email</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -35,11 +31,11 @@
                     <tr>
                         <td>
                             @if ($guru->foto)
-                                <img src="{{ asset('storage/' . $guru->foto) }}" width="50" height="50"
-                                    class="rounded-circle object-fit-cover">
+                                <img src="{{ asset('storage/' . $guru->foto) }}" width="60" height="60"
+                                    class="rounded-circle object-fit-cover" style="object-fit: cover;">
                             @else
                                 <div class="rounded-circle bg-secondary d-inline-flex align-items-center justify-content-center"
-                                    style="width: 50px; height: 50px;">
+                                    style="width: 60px; height: 60px;">
                                     <i class="fas fa-user text-white"></i>
                                 </div>
                             @endif
@@ -47,10 +43,6 @@
                         <td>
                             <strong>{{ $guru->nama }}</strong>
                         </td>
-                        <td>{{ $guru->nip }}</td>
-                        <td>{{ $guru->posisi }}</td>
-                        <td>{{ $guru->mata_pelajaran ?? '-' }}</td>
-                        <td>{{ $guru->email ?? '-' }}</td>
                         <td>
                             <a href="/admin/guru/{{ $guru->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                             <form action="/admin/guru/{{ $guru->id }}/delete" method="POST" style="display:inline;"
@@ -62,7 +54,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center py-4">Belum ada guru</td>
+                        <td colspan="3" class="text-center py-4">Belum ada guru</td>
                     </tr>
                 @endforelse
             </tbody>

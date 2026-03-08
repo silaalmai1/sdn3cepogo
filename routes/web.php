@@ -22,6 +22,10 @@ Route::get('/prestasi/{slug}', [PrestasiController::class, 'showDetail'])->name(
 // Galeri public
 Route::get('/galeri', [\App\Http\Controllers\GaleriController::class, 'showPublic'])->name('galeri');
 
+Route::get('/ekstrakulikuler', function () {
+    return view('ekstrakulikuler');
+})->name('ekstrakulikuler');
+
 
 
 Route::middleware('guestAdmin')->group(function () {

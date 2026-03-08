@@ -12,18 +12,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
     <style>
-        html,
+        html {
+            overflow-x: clip;
+        }
+
         body {
-            height: auto;
-            overflow-x: hidden;
+            overflow-x: clip;
         }
 
         .header-fixed {
+            /* topbar tidak sticky, scroll bersama halaman */
+        }
+
+        .navbar-sticky {
             position: sticky;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 999;
+            z-index: 1050;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         body {
@@ -32,7 +40,7 @@
 
         .topbar {
             background: #ffffff;
-            font-size: 18px;
+            font-size: 13px;
         }
 
         .navbar-main {
@@ -47,7 +55,7 @@
 
         .nav-link {
             font-weight: 500;
-            font-size: 20px;
+            font-size: 16px;
             letter-spacing: 0.5px;
         }
 
@@ -57,8 +65,8 @@
         }
 
         .social-icon i {
-            font-size: 22px;
-            margin-left: 18px;
+            font-size: 16px;
+            margin-left: 14px;
             cursor: pointer;
             transition: 0.3s;
         }
@@ -105,17 +113,69 @@
             padding-top: 80px;
             padding-bottom: 120px;
             width: 100%;
-            background: url('/images/hero.jpg') center/cover no-repeat;
-            background-size: cover;
-            background-position: center;
+            overflow: hidden;
         }
 
-        /*overlay biru gelap transparan*/
+        /* Hero Slideshow Container */
+        .hero-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300%;
+            height: 100%;
+            display: flex;
+            animation: slideAnimation 15s ease-in-out infinite;
+        }
+
+        .hero-slide {
+            width: 33.333%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+        }
+
+        /* Sliding Animation */
+        @keyframes slideAnimation {
+
+            0%,
+            30% {
+                transform: translateX(0%);
+            }
+
+            33%,
+            63% {
+                transform: translateX(-33.333%);
+            }
+
+            66%,
+            96% {
+                transform: translateX(-66.666%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        /*overlay gelap transparan - kurangi biru*/
         .hero-overlay {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: rgba(0, 60, 120, 0.55);
+            background: rgba(0, 0, 0, 0.45);
             top: 0;
             left: 0;
         }
@@ -126,18 +186,70 @@
             z-index: 2;
         }
 
-        .hero-subtitle {
-            font-size: 28px;
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(6px);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 50px;
         }
 
         .hero-title {
-            font-size: 70px;
+            font-size: 52px;
             font-weight: 800;
+            line-height: 1.15;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+            letter-spacing: -0.5px;
+        }
+
+        .hero-divider {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0.3) 100%);
+            border-radius: 4px;
         }
 
         .hero-address {
-            font-size: 20px;
-            margin-top: 10px;
+            font-size: 14px;
+            margin-top: 4px;
+            opacity: 0.88;
+            line-height: 1.6;
+        }
+
+        .btn-hero-primary {
+            background: #fff;
+            color: #003c78;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 10px 26px;
+            border-radius: 50px;
+            border: 2px solid #fff;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-hero-primary:hover {
+            background: transparent;
+            color: #fff;
+        }
+
+        .hero-photo {
+            border-radius: 10px;
+            height: 130px;
+            object-fit: cover;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.88;
+        }
+
+        .hero-photo:hover {
+            transform: scale(1.04);
+            opacity: 1;
         }
 
         /*stat card*/
@@ -181,23 +293,23 @@
 
         .card-sambutan {
             background: #ffffff;
-            border-radius: 18px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             border: none;
         }
 
         .sambutan-title {
-            font-size: 34px;
-            font-weight: 800;
+            font-size: 31px;
+            font-weight: 600;
         }
 
         .sambutan-sub {
-            font-size: 18px;
+            font-size: 15px;
         }
 
         .sambutan-text {
-            font-size: 17px;
-            line-height: 1.8;
+            font-size: 15px;
+            line-height: 1.7;
             text-align: justify;
         }
 
@@ -269,57 +381,41 @@
         /* ===== GURU CARD ===== */
         .guru-card {
             border: none;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid #eee;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
         }
 
         .guru-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 0.85);
-        }
-
-        .guru-card .card-body {
-            padding: 20px;
-        }
-
-        .guru-card .card-title {
-            font-size: 18px;
-            margin-bottom: 8px;
-            color: #000;
-            font-weight: 700;
-        }
-
-        .guru-card .card-text {
-            font-size: 14px;
-            color: #666;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
         }
 
         .guru-card .badge {
-            background: linear-gradient(135deg, #0071e3 0%, #0056b3 100%) !important;
-            font-weight: 600;
-            padding: 6px 12px !important;
+            background: #0071e3 !important;
+            font-size: 10px;
+            font-weight: 500;
+            padding: 3px 8px !important;
+            border-radius: 20px;
         }
 
         .guru-info-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 6px;
+            gap: 5px;
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 2px;
         }
 
         .guru-info-item i {
             color: #0071e3;
-            width: 16px;
+            width: 12px;
             text-align: center;
+            font-size: 11px;
         }
 
         /* ===== PRESTASI CARD ===== */
@@ -354,8 +450,8 @@
 
         /* ===== GURU PAGE SECTION ===== */
         .guru-section-title {
-            font-size: 48px;
-            font-weight: 800;
+            font-size: 28px;
+            font-weight: 600;
             margin-bottom: 12px;
             background: linear-gradient(135deg, #000 0%, #333 100%);
             -webkit-background-clip: text;
@@ -364,9 +460,51 @@
         }
 
         .guru-section-subtitle {
-            font-size: 18px;
+            font-size: 13px;
             color: #666;
-            margin-bottom: 40px;
+            margin-bottom: 24px;
+        }
+
+        /* ===== CAROUSEL SEKOLAH ===== */
+        .carousel-card {
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-img {
+            height: 280px;
+            object-fit: cover;
+            filter: brightness(0.82);
+            transition: filter 0.4s ease;
+        }
+
+        .carousel-card:hover .carousel-img {
+            filter: brightness(0.92);
+        }
+
+        .carousel-cap-title {
+            font-size: 22px;
+            font-weight: 600;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-cap-sub {
+            font-size: 13px;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-indicators [data-bs-target] {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: none;
+            opacity: 0.5;
+        }
+
+        .carousel-indicators .active {
+            opacity: 1;
+            background-color: #fff;
         }
 
         /* ===== DARK MODE GLOBAL ===== */
@@ -415,11 +553,13 @@
 
         body.dark-mode .navbar-main {
             background: #1f1f1f !important;
-            border-bottom: 1px solid #333 !important;
+            border: none !important;
+            box-shadow: none !important;
         }
 
         body.dark-mode .topbar {
             background: #1f1f1f !important;
+            border: none !important;
         }
 
         body.dark-mode .nav-link {
@@ -453,12 +593,20 @@
         body.dark-mode .guru-card {
             background: #1e1e1e !important;
             border: 1px solid #333 !important;
+        }
+
+        body.dark-mode .guru-card-name {
             color: #e4e4e4 !important;
         }
 
-        body.dark-mode .guru-card .card-title,
-        body.dark-mode .guru-card .card-body {
-            color: #e4e4e4 !important;
+        body.dark-mode .guru-avatar-placeholder {
+            background: #2a2a2a !important;
+            color: #666 !important;
+        }
+
+        body.dark-mode .guru-mapel,
+        body.dark-mode .guru-info-item {
+            color: #a0a0a0 !important;
         }
 
         body.dark-mode .guru-section-title {
@@ -492,10 +640,250 @@
         }
 
         body.dark-mode .navbar-brand {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(8px);
-            border-radius: 10px;
+            background: transparent;
+            backdrop-filter: none;
             padding: 8px 12px;
+        }
+
+        /* Ekstrakulikuler Card */
+        .ekskul-card {
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ekskul-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        /* Visi Misi Card */
+        .visi-misi-card {
+            border-radius: 14px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+        }
+
+        .visi-misi-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13) !important;
+        }
+
+        .visi-misi-card .icon-wrapper {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visi-misi-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .visi-misi-card ul li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 10px;
+        }
+
+        .visi-misi-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .ekskul-icon-wrap {
+            width: 50px;
+            height: 50px;
+            background: #eef3ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer-main {
+            background: #ffffff;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .footer-link {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: #0d6efd;
+        }
+
+        .footer-sosmed {
+            color: #555;
+            font-size: 16px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-sosmed:hover {
+            color: #0d6efd;
+        }
+
+        body.dark-mode .footer-main {
+            background: #1a1a1a !important;
+            border-top: 1px solid #333 !important;
+        }
+
+        body.dark-mode .footer-link,
+        body.dark-mode .footer-sosmed {
+            color: #aaa !important;
+        }
+
+        body.dark-mode .ekskul-card {
+            background: #1e1e1e !important;
+            color: #e4e4e4 !important;
+        }
+
+        body.dark-mode .visi-misi-card {
+            background: #1e1e1e !important;
+            color: #e4e4e4 !important;
+        }
+
+        body.dark-mode .visi-misi-card .text-muted {
+            color: #aaa !important;
+        }
+
+        /* ===== RESPONSIVE MOBILE ===== */
+        @media (max-width: 767.98px) {
+
+            /* Navbar collapse border */
+            .navbar-collapse {
+                border-top: 1px solid #eee;
+                margin-top: 8px;
+                padding-top: 8px;
+            }
+
+            body.dark-mode .navbar-collapse {
+                border-top-color: #333;
+            }
+
+            /* Active nav link: left border instead of bottom */
+            .nav-link.active {
+                border-bottom: none !important;
+                border-left: 3px solid #0d6efd;
+                padding-left: 10px;
+            }
+
+            .nav-link {
+                font-size: 15px;
+            }
+
+            /* Hero */
+            .hero-section {
+                min-height: auto;
+                padding-top: 50px;
+                padding-bottom: 60px;
+            }
+
+            .hero-title {
+                font-size: 34px;
+            }
+
+            .hero-badge {
+                font-size: 11px;
+                padding: 5px 14px;
+            }
+
+            .hero-address {
+                font-size: 12px;
+            }
+
+            /* Stats - overlap hero slightly on mobile too */
+            .stats {
+                margin-top: -40px;
+                padding-top: 0;
+                padding-bottom: 24px;
+                background: transparent;
+            }
+
+            .stat-card {
+                padding: 18px 12px;
+                border-radius: 12px;
+            }
+
+            .stat-card h2 {
+                font-size: 28px;
+            }
+
+            .stat-card p {
+                font-size: 13px;
+            }
+
+            /* Section titles */
+            .guru-section-title {
+                font-size: 22px;
+            }
+
+            /* Sambutan */
+            .sambutan-text {
+                font-size: 13px;
+            }
+
+            /* Detail page */
+            .detail-wrapper {
+                padding: 20px 16px;
+                border-radius: 12px;
+            }
+
+            .detail-title {
+                font-size: 26px;
+            }
+
+            .detail-subtitle {
+                font-size: 16px;
+            }
+
+            .detail-text {
+                font-size: 15px;
+                line-height: 1.8;
+            }
+
+            /* Galeri card body compact */
+            .galeri-card .card-body {
+                padding: 10px;
+            }
+
+            /* Guru card compact on mobile */
+            .guru-card img,
+            .guru-card .card-img-top+div {
+                height: 140px !important;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+
+            /* Extra small phones */
+            .hero-title {
+                font-size: 30px;
+            }
+
+            .stat-card h2 {
+                font-size: 24px;
+            }
+
+            .stat-card p {
+                font-size: 12px;
+            }
+
+            /* Section headings */
+            h2.fw-semibold[style*="font-size:28px"] {
+                font-size: 20px !important;
+            }
         }
     </style>
 </head>
@@ -506,6 +894,8 @@
 
 
     @yield('content')
+
+    @include('partials.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
