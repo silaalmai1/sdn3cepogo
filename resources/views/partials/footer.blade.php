@@ -5,9 +5,9 @@
             {{-- Kolom 1: Info Sekolah --}}
             <div class="col-12 col-md-4">
                 <div class="d-flex align-items-center mb-3">
-                    <img src="/images/logo.png" width="45" class="me-2">
+                    <img src="{{ $logoUrl }}" width="45" class="me-2">
                     <div>
-                        <h6 class="mb-0 fw-semibold" style="font-size:14px;">SD Negeri 1 & 3 Cepogo</h6>
+                        <h6 class="mb-0 fw-semibold" style="font-size:14px;">{{ $settings['school_name'] }}</h6>
                         <small class="text-muted" style="font-size:11px;">Kab. Jepara, Jawa Tengah</small>
                     </div>
                 </div>
@@ -57,18 +57,26 @@
             {{-- Kolom 4: Kontak --}}
             <div class="col-12 col-md-3">
                 <h6 class="fw-semibold mb-3" style="font-size:13px;">Kontak Kami</h6>
+                @php
+                    $footerAddress = App\Models\Setting::get(
+                        'school_address',
+                        'Desa Cepogo RT. 04 RW. 10, Kec. Kembang, Kab. Jepara',
+                    );
+                    $footerPhone = App\Models\Setting::get('school_phone', '081390788465');
+                    $footerEmail = App\Models\Setting::get('school_email', 'sdn1.3cepogo@gmail.com');
+                @endphp
                 <ul class="list-unstyled" style="font-size:12.5px; line-height:1.8;">
                     <li class="mb-2">
                         <i class="fa-solid fa-location-dot text-primary me-2"></i>
-                        Desa Cepogo RT. 04 RW. 10, Kec. Kembang, Kab. Jepara
+                        {{ str_replace("\n", ', ', $footerAddress) }}
                     </li>
                     <li class="mb-2">
                         <i class="fa-solid fa-phone text-primary me-2"></i>
-                        081390788465
+                        {{ $footerPhone }}
                     </li>
                     <li class="mb-2">
                         <i class="fa-solid fa-envelope text-primary me-2"></i>
-                        sdn1.3cepogo@gmail.com
+                        {{ $footerEmail }}
                     </li>
                 </ul>
             </div>

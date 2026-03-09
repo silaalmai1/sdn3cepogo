@@ -331,6 +331,10 @@
                 <i class="fas fa-images"></i>
                 <span>Galeri</span>
             </a>
+            <a href="/admin/settings" class="{{ request()->is('admin/settings*') ? 'active' : '' }}">
+                <i class="fas fa-cog"></i>
+                <span>Pengaturan</span>
+            </a>
         </nav>
         <div class="logout-section">
             <a href="/logout" class="btn-logout">

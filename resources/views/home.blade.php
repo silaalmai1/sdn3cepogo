@@ -113,33 +113,36 @@
     {{-- SECTION PRESTASI TERBARU --}}
     <section class="py-3 bg-white">
         <div class="container">
-            <div class="text-center mb-3">
-                <h2 class="fw-semibold mb-2" style="font-size:28px;">Prestasi Terbaru</h2>
-                <p class="text-muted" style="font-size:13px;">Pencapaian gemilang siswa kami</p>
+            <div class="text-center mb-2">
+                <h2 class="fw-semibold mb-1" style="font-size:22px;">Prestasi Terbaru</h2>
+                <p class="text-muted" style="font-size:12px;">Pencapaian gemilang siswa kami</p>
             </div>
 
-            <div class="row g-4">
+            <div class="row g-3">
                 @if ($prestasiTerbaru->count() > 0)
                     @foreach ($prestasiTerbaru as $prestasi)
                         <div class="col-12 col-sm-6 col-md-4">
                             <div class="card h-100 shadow-sm prestasi-card">
                                 @if ($prestasi->gambar)
                                     <img src="{{ asset('storage/' . $prestasi->gambar) }}" class="card-img-top"
-                                        alt="{{ $prestasi->judul }}" style="height: 200px; object-fit: cover;">
+                                        alt="{{ $prestasi->judul }}" style="height: 150px; object-fit: cover;">
                                 @else
                                     <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center"
-                                        style="height: 200px;">
-                                        <span>Foto Prestasi</span>
+                                        style="height: 150px;">
+                                        <span style="font-size: 13px;">Foto Prestasi</span>
                                     </div>
                                 @endif
-                                <div class="card-body d-flex flex-column">
-                                    <span class="badge bg-primary mb-2 align-self-start">{{ $prestasi->tingkat }}</span>
-                                    <h5 class="card-title">{{ $prestasi->judul }}</h5>
-                                    <p class="card-text text-muted flex-grow-1">
-                                        {{ Str::limit($prestasi->deskripsi_singkat, 100) }}</p>
-                                    <small class="text-muted d-block mb-3">Tahun {{ $prestasi->tahun }}</small>
+                                <div class="card-body d-flex flex-column p-3">
+                                    <span class="badge bg-primary mb-2 align-self-start"
+                                        style="font-size: 11px;">{{ $prestasi->tingkat }}</span>
+                                    <h5 class="card-title" style="font-size: 16px;">{{ $prestasi->judul }}</h5>
+                                    <p class="card-text text-muted flex-grow-1" style="font-size: 13px;">
+                                        {{ Str::limit($prestasi->deskripsi_singkat, 80) }}</p>
+                                    <small class="text-muted d-block mb-2" style="font-size: 11px;">Tahun
+                                        {{ $prestasi->tahun }}</small>
                                     <a href="{{ route('prestasi.detail', $prestasi->slug) }}"
-                                        class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
+                                        class="btn btn-sm btn-outline-primary"
+                                        style="padding: 4px 12px; font-size: 12px;">Baca Selengkapnya</a>
                                 </div>
                             </div>
                         </div>
@@ -158,41 +161,41 @@
     </section>
 
     {{-- SECTION EKSTRAKULIKULER --}}
-    <section class="py-5 bg-white">
+    <section class="py-3 bg-white">
         <div class="container">
-            <div class="text-center mb-4">
-                <h2 class="fw-semibold mb-2" style="font-size:28px;">Ekstrakulikuler</h2>
-                <p class="text-muted" style="font-size:13px;">Kegiatan pengembangan bakat dan minat siswa</p>
+            <div class="text-center mb-2">
+                <h2 class="fw-semibold mb-1" style="font-size:22px;">Ekstrakulikuler</h2>
+                <p class="text-muted" style="font-size:12px;">Kegiatan pengembangan bakat dan minat siswa</p>
             </div>
-            <div class="row g-3 justify-content-center">
+            <div class="row g-2 justify-content-center">
                 <div class="col-6 col-md-2">
-                    <div class="card text-center p-3 h-100 border-0 shadow-sm ekskul-card">
-                        <i class="fa-solid fa-campground text-primary mb-2" style="font-size:28px;"></i>
-                        <p class="mb-0 fw-semibold" style="font-size:13px;">Pramuka</p>
+                    <div class="card text-center p-2 h-100 border-0 shadow-sm ekskul-card">
+                        <i class="fa-solid fa-campground text-primary mb-1" style="font-size:22px;"></i>
+                        <p class="mb-0 fw-semibold" style="font-size:12px;">Pramuka</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
-                    <div class="card text-center p-3 h-100 border-0 shadow-sm ekskul-card">
-                        <i class="fa-solid fa-music text-primary mb-2" style="font-size:28px;"></i>
-                        <p class="mb-0 fw-semibold" style="font-size:13px;">Seni Tari</p>
+                    <div class="card text-center p-2 h-100 border-0 shadow-sm ekskul-card">
+                        <i class="fa-solid fa-music text-primary mb-1" style="font-size:22px;"></i>
+                        <p class="mb-0 fw-semibold" style="font-size:12px;">Seni Tari</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
-                    <div class="card text-center p-3 h-100 border-0 shadow-sm ekskul-card">
-                        <i class="fa-solid fa-futbol text-primary mb-2" style="font-size:28px;"></i>
-                        <p class="mb-0 fw-semibold" style="font-size:13px;">Olahraga</p>
+                    <div class="card text-center p-2 h-100 border-0 shadow-sm ekskul-card">
+                        <i class="fa-solid fa-futbol text-primary mb-1" style="font-size:22px;"></i>
+                        <p class="mb-0 fw-semibold" style="font-size:12px;">Olahraga</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
-                    <div class="card text-center p-3 h-100 border-0 shadow-sm ekskul-card">
-                        <i class="fa-solid fa-palette text-primary mb-2" style="font-size:28px;"></i>
-                        <p class="mb-0 fw-semibold" style="font-size:13px;">Kesenian</p>
+                    <div class="card text-center p-2 h-100 border-0 shadow-sm ekskul-card">
+                        <i class="fa-solid fa-palette text-primary mb-1" style="font-size:22px;"></i>
+                        <p class="mb-0 fw-semibold" style="font-size:12px;">Kesenian</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
-                    <div class="card text-center p-3 h-100 border-0 shadow-sm ekskul-card">
-                        <i class="fa-solid fa-computer text-primary mb-2" style="font-size:28px;"></i>
-                        <p class="mb-0 fw-semibold" style="font-size:13px;">Komputer</p>
+                    <div class="card text-center p-2 h-100 border-0 shadow-sm ekskul-card">
+                        <i class="fa-solid fa-computer text-primary mb-1" style="font-size:22px;"></i>
+                        <p class="mb-0 fw-semibold" style="font-size:12px;">Komputer</p>
                     </div>
                 </div>
             </div>

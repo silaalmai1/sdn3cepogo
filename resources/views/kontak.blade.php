@@ -18,8 +18,8 @@
                             </div>
                             <h5 class="card-title fw-bold mb-3">Telepon</h5>
                             <p class="card-text text-muted">
-                                <a href="tel:081390788465" class="text-decoration-none text-dark">
-                                    081390788465
+                                <a href="tel:{{ $settings['school_phone'] }}" class="text-decoration-none text-dark">
+                                    {{ $settings['school_phone'] }}
                                 </a>
                             </p>
                             <p class="card-text text-muted small">Hubungi kami melalui telepon untuk pertanyaan atau
@@ -40,8 +40,8 @@
                             </div>
                             <h5 class="card-title fw-bold mb-3">Email</h5>
                             <p class="card-text text-muted">
-                                <a href="mailto:sdn3cepogo@gmail.com" class="text-decoration-none text-dark">
-                                    sdn1.3cepogo@gmail.com
+                                <a href="mailto:{{ $settings['school_email'] }}" class="text-decoration-none text-dark">
+                                    {{ $settings['school_email'] }}
                                 </a>
                             </p>
                             <p class="card-text text-muted small">Kirimkan email untuk pertanyaan atau masukan.</p>
@@ -61,10 +61,7 @@
                             </div>
                             <h5 class="card-title fw-bold mb-3">Alamat</h5>
                             <p class="card-text text-muted">
-                                Desa Cepogo RT. 04 RW. 10<br>
-                                Kec. Kembang<br>
-                                Kab. Jepara<br>
-                                Prov. Jawa Tengah
+                                {!! nl2br(e($settings['school_address'])) !!}
                             </p>
                         </div>
                     </div>

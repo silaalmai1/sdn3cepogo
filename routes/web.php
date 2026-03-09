@@ -70,6 +70,10 @@ Route::middleware('adminLogin')->group(function () {
     Route::get('/admin/guru/{id}/edit', [GuruController::class, 'edit']);
     Route::post('/admin/guru/{id}/update', [GuruController::class, 'update']);
     Route::post('/admin/guru/{id}/delete', [GuruController::class, 'destroy']);
+
+    // Admin Settings Routes
+    Route::get('/admin/settings', [\App\Http\Controllers\SettingController::class, 'index']);
+    Route::post('/admin/settings/update', [\App\Http\Controllers\SettingController::class, 'update']);
 });
 
 

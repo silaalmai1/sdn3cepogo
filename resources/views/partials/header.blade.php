@@ -6,17 +6,17 @@
             <div class="d-flex gap-3">
                 <div class="topbar-item">
                     <i class="fa-solid fa-phone text-primary"></i>
-                    081390788465
+                    {{ $settings['school_phone'] }}
                 </div>
 
                 <div class="topbar-item">
                     <i class="fa-solid fa-envelope text-primary"></i>
-                    sdn1.3cepogo@gmail.com
+                    {{ $settings['school_email'] }}
                 </div>
 
                 <div class="topbar-item">
                     <i class="fa-solid fa-location-dot text-primary"></i>
-                    Desa Cepogo RT. 04 RW. 10, Kec. Kembang, Kab. Jepara, Prov. Jawa Tengah
+                    {{ str_replace("\n", ', ', $settings['school_address']) }}
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
 
             {{-- Logo --}}
             <a class="navbar-brand d-flex align-items-center logo-brand" href="/">
-                <img src="{{ asset('images/logo.png') }}" width="60" class="me-2 logo-img">
+                <img src="{{ $logoUrl }}" width="60" class="me-2 logo-img">
             </a>
 
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
