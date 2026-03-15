@@ -127,7 +127,7 @@
                     </h5>
                     <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.5784571649753!2d110.7034!3d-6.8951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e771b7c7c7c7c7d%3A0x7c7c7c7c7c7c7c7c!2sCepogo%2C%20Jepara!5e0!3m2!1sid!2sid!4v1234567890"
+                            src="https://maps.google.com/maps?q=SD%20Negeri%201%203%20Cepogo%2C%20Jepara&t=&z=17&ie=UTF8&iwloc=&output=embed"
                             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>

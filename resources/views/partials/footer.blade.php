@@ -30,6 +30,7 @@
                     <li class="mb-2"><a href="/" class="footer-link">Beranda</a></li>
                     <li class="mb-2"><a href="/tentang" class="footer-link">Tentang</a></li>
                     <li class="mb-2"><a href="/guru" class="footer-link">Guru</a></li>
+                    <li class="mb-2"><a href="/berita" class="footer-link">Berita</a></li>
                     <li class="mb-2"><a href="/prestasi" class="footer-link">Prestasi</a></li>
                     <li class="mb-2"><a href="/ekstrakulikuler" class="footer-link">Ekstrakulikuler</a></li>
                     <li class="mb-2"><a href="/galeri" class="footer-link">Galeri</a></li>
@@ -41,16 +42,13 @@
             <div class="col-6 col-md-3">
                 <h6 class="fw-semibold mb-3" style="font-size:13px;">Ekstrakulikuler</h6>
                 <ul class="list-unstyled" style="font-size:12.5px;">
-                    <li class="mb-2"><i class="fa-solid fa-circle-dot text-primary me-1" style="font-size:9px;"></i>
-                        Pramuka</li>
-                    <li class="mb-2"><i class="fa-solid fa-circle-dot text-primary me-1" style="font-size:9px;"></i>
-                        Seni Tari</li>
-                    <li class="mb-2"><i class="fa-solid fa-circle-dot text-primary me-1" style="font-size:9px;"></i>
-                        Olahraga</li>
-                    <li class="mb-2"><i class="fa-solid fa-circle-dot text-primary me-1" style="font-size:9px;"></i>
-                        Kesenian</li>
-                    <li class="mb-2"><i class="fa-solid fa-circle-dot text-primary me-1" style="font-size:9px;"></i>
-                        Komputer</li>
+                    @forelse ($extracurricularItems as $item)
+                        <li class="mb-2"><i class="fa-solid fa-circle-dot text-primary me-1"
+                                style="font-size:9px;"></i>
+                            {{ $item['name'] }}</li>
+                    @empty
+                        <li class="mb-2 text-muted">Belum ada ekstrakurikuler</li>
+                    @endforelse
                 </ul>
             </div>
 
@@ -87,10 +85,7 @@
 
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
             <small style="font-size:11.5px;" class="text-muted">
-                &copy; {{ date('Y') }} SD Negeri 1 & 3 Cepogo. All rights reserved.
-            </small>
-            <small style="font-size:11.5px;" class="text-muted">
-                Dibuat dengan <i class="fa-solid fa-heart text-danger"></i> untuk pendidikan
+                &copy; {{ date('Y') }} Sila Almaira Riva
             </small>
         </div>
     </div>

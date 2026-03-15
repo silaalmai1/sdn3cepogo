@@ -64,6 +64,10 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link {{ request()->is('berita') ? 'active' : '' }}" href="/berita">Berita</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link {{ request()->is('prestasi') ? 'active' : '' }}"
                             href="/prestasi">Prestasi</a>
                     </li>

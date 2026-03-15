@@ -125,6 +125,71 @@
                             </div>
                         </div>
 
+                        <hr class="my-4">
+
+                        @php
+                            $defaultExtracurricular = [
+                                'Pramuka',
+                                'Seni Tari',
+                                'Olahraga',
+                                'Kesenian',
+                                'Komputer',
+                                'Drumband',
+                            ];
+                            $savedExtracurricular = json_decode(
+                                App\Models\Setting::get('extracurricular_items', json_encode($defaultExtracurricular)),
+                                true,
+                            );
+                            $extracurricularItems = old(
+                                'extracurricular_items',
+                                is_array($savedExtracurricular) ? $savedExtracurricular : $defaultExtracurricular,
+                            );
+                        @endphp
+
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <h5 class="mb-1">Ekstrakurikuler</h5>
+                                    <small class="text-muted">Item yang dihapus di sini akan hilang dari beranda, footer,
+                                        dan halaman ekstrakurikuler.</small>
+                                </div>
+                                <button type="button" class="btn btn-outline-primary btn-sm"
+                                    onclick="addExtracurricularItem()">
+                                    <i class="fas fa-plus me-1"></i>Tambah Item
+                                </button>
+                            </div>
+
+                            <div id="extracurricular-list" class="d-grid gap-2">
+                                @forelse ($extracurricularItems as $item)
+                                    <div class="input-group extracurricular-item">
+                                        <span class="input-group-text"><i class="fas fa-star"></i></span>
+                                        <input type="text" class="form-control" name="extracurricular_items[]"
+                                            value="{{ $item }}" placeholder="Nama ekstrakurikuler">
+                                        <button type="button" class="btn btn-outline-danger"
+                                            onclick="removeExtracurricularItem(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                @empty
+                                    <div class="input-group extracurricular-item">
+                                        <span class="input-group-text"><i class="fas fa-star"></i></span>
+                                        <input type="text" class="form-control" name="extracurricular_items[]"
+                                            placeholder="Nama ekstrakurikuler">
+                                        <button type="button" class="btn btn-outline-danger"
+                                            onclick="removeExtracurricularItem(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                @endforelse
+                            </div>
+                            @error('extracurricular_items')
+                                <div class="text-danger small mt-2">{{ $message }}</div>
+                            @enderror
+                            @error('extracurricular_items.*')
+                                <div class="text-danger small mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-save me-2"></i>Simpan Pengaturan
@@ -140,21 +205,43 @@
     </div>
 @endsection
 
-@push('scripts')
-    <script>
-        function previewImage(event) {
-            const input = event.target;
-            const preview = document.getElementById('logo-preview');
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        const preview = document.getElementById('logo-preview');
 
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
 
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                }
-
-                reader.readAsDataURL(input.files[0]);
+            reader.onload = function(e) {
+                preview.src = e.target.result;
             }
+
+            reader.readAsDataURL(input.files[0]);
         }
-    </script>
-@endpush
+    }
+
+    function addExtracurricularItem() {
+        const container = document.getElementById('extracurricular-list');
+        const wrapper = document.createElement('div');
+        wrapper.className = 'input-group extracurricular-item';
+        wrapper.innerHTML = `
+            <span class="input-group-text"><i class="fas fa-star"></i></span>
+            <input type="text" class="form-control" name="extracurricular_items[]" placeholder="Nama ekstrakurikuler">
+            <button type="button" class="btn btn-outline-danger" onclick="removeExtracurricularItem(this)">
+                <i class="fas fa-trash"></i>
+            </button>
+        `;
+        container.appendChild(wrapper);
+    }
+
+    function removeExtracurricularItem(button) {
+        const items = document.querySelectorAll('.extracurricular-item');
+        if (items.length === 1) {
+            items[0].querySelector('input').value = '';
+            return;
+        }
+
+        button.closest('.extracurricular-item').remove();
+    }
+</script>

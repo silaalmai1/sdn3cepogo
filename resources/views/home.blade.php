@@ -160,44 +160,80 @@
         </div>
     </section>
 
-    {{-- SECTION EKSTRAKULIKULER --}}
-    <section class="py-3 bg-white">
+    {{-- SECTION BERITA TERBARU --}}
+    <section class="py-5 bg-light">
         <div class="container">
-            <div class="text-center mb-2">
-                <h2 class="fw-semibold mb-1" style="font-size:22px;">Ekstrakulikuler</h2>
-                <p class="text-muted" style="font-size:12px;">Kegiatan pengembangan bakat dan minat siswa</p>
+            <div class="text-center mb-4">
+                <h2 class="fw-semibold mb-2" style="font-size:28px;">Poster Berita Terbaru</h2>
+                <p class="text-muted" style="font-size:14px;">Informasi sekolah dalam bentuk poster bulletin</p>
             </div>
-            <div class="row g-2 justify-content-center">
-                <div class="col-6 col-md-2">
-                    <div class="card text-center p-2 h-100 border-0 shadow-sm ekskul-card">
-                        <i class="fa-solid fa-campground text-primary mb-1" style="font-size:22px;"></i>
-                        <p class="mb-0 fw-semibold" style="font-size:12px;">Pramuka</p>
+
+            <div class="row g-4">
+                @if ($beritaTerbaru->count() > 0)
+                    @foreach ($beritaTerbaru as $berita)
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="card berita-card h-100 border-0 shadow-sm">
+                                @if ($berita->gambar)
+                                    <a href="{{ asset('storage/' . $berita->gambar) }}" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <img src="{{ asset('storage/' . $berita->gambar) }}" class="berita-card-image"
+                                            alt="Poster berita {{ $loop->iteration }}">
+                                    </a>
+                                @else
+                                    <div
+                                        class="berita-card-image d-flex align-items-center justify-content-center text-muted">
+                                        Poster tidak tersedia
+                                    </div>
+                                @endif
+                                <div class="card-body p-3">
+                                    <p class="mb-2 fw-semibold" style="font-size:16px;">Poster Bulletin Sekolah</p>
+                                    <small class="text-muted d-block mb-3" style="font-size:12px;">
+                                        Diunggah {{ $berita->created_at ? $berita->created_at->format('d M Y') : '-' }}
+                                    </small>
+                                    @if ($berita->gambar)
+                                        <a href="{{ asset('storage/' . $berita->gambar) }}" target="_blank"
+                                            rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">Lihat
+                                            Poster</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="col-12 text-center text-muted py-5">
+                        <p>Belum ada poster berita yang ditampilkan</p>
                     </div>
+                @endif
+            </div>
+
+            @if ($beritaTerbaru->count() > 0)
+                <div class="text-center mt-4">
+                    <a href="{{ route('berita') }}" class="btn btn-primary btn-sm px-4">Lihat Semua Poster</a>
                 </div>
-                <div class="col-6 col-md-2">
-                    <div class="card text-center p-2 h-100 border-0 shadow-sm ekskul-card">
-                        <i class="fa-solid fa-music text-primary mb-1" style="font-size:22px;"></i>
-                        <p class="mb-0 fw-semibold" style="font-size:12px;">Seni Tari</p>
+            @endif
+        </div>
+    </section>
+
+    {{-- SECTION EKSTRAKULIKULER --}}
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-semibold mb-2" style="font-size:30px;">Ekstrakulikuler</h2>
+                <p class="text-muted" style="font-size:16px;">Kegiatan pengembangan bakat dan minat siswa</p>
+            </div>
+            <div class="row g-3 justify-content-center">
+                @forelse ($extracurricularItems as $item)
+                    <div class="col-6 col-md">
+                        <div class="card text-center p-4 h-100 border-0 shadow-sm ekskul-card">
+                            <i class="fa-solid {{ $item['icon'] }} text-primary mb-2" style="font-size:34px;"></i>
+                            <p class="mb-0 fw-semibold" style="font-size:16px;">{{ $item['name'] }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="card text-center p-2 h-100 border-0 shadow-sm ekskul-card">
-                        <i class="fa-solid fa-futbol text-primary mb-1" style="font-size:22px;"></i>
-                        <p class="mb-0 fw-semibold" style="font-size:12px;">Olahraga</p>
+                @empty
+                    <div class="col-12 text-center text-muted py-4">
+                        <p class="mb-0">Belum ada ekstrakurikuler yang ditampilkan</p>
                     </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="card text-center p-2 h-100 border-0 shadow-sm ekskul-card">
-                        <i class="fa-solid fa-palette text-primary mb-1" style="font-size:22px;"></i>
-                        <p class="mb-0 fw-semibold" style="font-size:12px;">Kesenian</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="card text-center p-2 h-100 border-0 shadow-sm ekskul-card">
-                        <i class="fa-solid fa-computer text-primary mb-1" style="font-size:22px;"></i>
-                        <p class="mb-0 fw-semibold" style="font-size:12px;">Komputer</p>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>

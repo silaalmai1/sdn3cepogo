@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\DB;      
@@ -16,6 +17,7 @@ Route::get('/kontak', function () {
     return view('kontak');
 })->name('kontak');
 Route::get('/guru', [GuruController::class, 'showPublic'])->name('guru');
+Route::get('/berita', [BeritaController::class, 'showPublic'])->name('berita');
 Route::get('/prestasi', [PrestasiController::class, 'showPublic'])->name('prestasi');
 
 Route::get('/prestasi/{slug}', [PrestasiController::class, 'showDetail'])->name('prestasi.detail');
@@ -42,10 +44,19 @@ Route::middleware('adminLogin')->group(function () {
     Route::get('/admin', function () {
         return view('admin.dashboard', [
             'totalPrestasi' => \App\Models\Prestasi::count(),
+            'totalBerita' => \App\Models\Berita::count(),
             'totalGuru' => \App\Models\Guru::count(),
             'totalUsers' => \Illuminate\Support\Facades\DB::table('users')->count(),
         ]);
     });
+
+    // Admin Berita Routes
+    Route::get('/admin/berita', [BeritaController::class, 'index']);
+    Route::get('/admin/berita/create', [BeritaController::class, 'create']);
+    Route::post('/admin/berita/store', [BeritaController::class, 'store']);
+    Route::get('/admin/berita/{id}/edit', [BeritaController::class, 'edit']);
+    Route::post('/admin/berita/{id}/update', [BeritaController::class, 'update']);
+    Route::post('/admin/berita/{id}/delete', [BeritaController::class, 'destroy']);
 
     // Admin Prestasi Routes
     Route::get('/admin/prestasi', [PrestasiController::class, 'index']);

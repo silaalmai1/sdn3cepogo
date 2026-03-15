@@ -656,6 +656,24 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
         }
 
+        .berita-card {
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .berita-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .berita-card-image {
+            height: 360px;
+            width: 100%;
+            object-fit: contain;
+            background: #f8f9fa;
+        }
+
         /* Visi Misi Card */
         .visi-misi-card {
             border-radius: 14px;
@@ -747,6 +765,16 @@
         body.dark-mode .ekskul-card {
             background: #1e1e1e !important;
             color: #e4e4e4 !important;
+        }
+
+        body.dark-mode .berita-card {
+            background: #1e1e1e !important;
+            color: #e4e4e4 !important;
+            border: 1px solid #333 !important;
+        }
+
+        body.dark-mode .berita-card-image {
+            background: #111 !important;
         }
 
         body.dark-mode .visi-misi-card {

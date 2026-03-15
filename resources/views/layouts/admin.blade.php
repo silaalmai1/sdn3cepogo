@@ -323,6 +323,10 @@
                 <i class="fas fa-trophy"></i>
                 <span>Prestasi</span>
             </a>
+            <a href="/admin/berita" class="{{ request()->is('admin/berita*') ? 'active' : '' }}">
+                <i class="fas fa-newspaper"></i>
+                <span>Berita</span>
+            </a>
             <a href="/admin/guru" class="{{ request()->is('admin/guru*') ? 'active' : '' }}">
                 <i class="fas fa-chalkboard-user"></i>
                 <span>Guru</span>

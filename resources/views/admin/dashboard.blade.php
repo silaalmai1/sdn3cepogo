@@ -5,7 +5,7 @@
 @section('content')
     <div class="row g-4 mb-5">
         <!-- Card Prestasi -->
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-3 col-md-6">
             <div class="card card-admin">
                 <div class="stat-card">
                     <div class="stat-content">
@@ -20,8 +20,24 @@
             </div>
         </div>
 
+        <!-- Card Berita -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-admin">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-label">Total Berita</div>
+                        <div class="stat-number">{{ $totalBerita ?? 0 }}</div>
+                        <a href="/admin/berita" class="btn-action">Kelola →</a>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Card Guru -->
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-3 col-md-6">
             <div class="card card-admin">
                 <div class="stat-card">
                     <div class="stat-content">
@@ -37,7 +53,7 @@
         </div>
 
         <!-- Card Pengguna -->
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-3 col-md-6">
             <div class="card card-admin">
                 <div class="stat-card">
                     <div class="stat-content">
@@ -56,6 +72,6 @@
     <div class="welcome-card">
         <h5>Selamat datang! 👋</h5>
         <p>Kelola website SD Negeri 1-3 Cepogo dengan mudah. Gunakan menu di samping untuk menambah, mengedit, dan menghapus
-            data prestasi, guru, dan konten lainnya.</p>
+            data berita, prestasi, guru, dan konten lainnya.</p>
     </div>
 @endsection

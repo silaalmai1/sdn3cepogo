@@ -27,18 +27,28 @@ class SettingController extends Controller
             'school_phone' => 'nullable|string|max:50',
             'school_email' => 'nullable|email|max:255',
             'site_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'extracurricular_items' => 'nullable|array',
+            'extracurricular_items.*' => 'nullable|string|max:100',
         ]);
+
+        $extracurricularItems = collect($request->input('extracurricular_items', []))
+            ->map(fn ($item) => trim((string) $item))
+            ->filter()
+            ->unique()
+            ->values()
+            ->all();
 
         // Update text settings
         Setting::set('school_name', $request->school_name);
         Setting::set('school_address', $request->school_address);
         Setting::set('school_phone', $request->school_phone);
         Setting::set('school_email', $request->school_email);
+        Setting::set('extracurricular_items', json_encode($extracurricularItems));
 
         // Handle logo upload
         if ($request->hasFile('site_logo')) {
             $oldLogo = Setting::get('site_logo');
-            
+
             // Delete old logo if it exists and not the default
             if ($oldLogo && $oldLogo != 'images/logo.png' && Storage::disk('public')->exists($oldLogo)) {
                 Storage::disk('public')->delete($oldLogo);
