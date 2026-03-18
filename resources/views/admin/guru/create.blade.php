@@ -3,7 +3,7 @@
 @section('title', 'Tambah Guru')
 
 @section('content')
-    <a href="/admin/guru" class="btn btn-secondary mb-4">← Kembali</a>
+    <a href="/admin/guru" class="btn btn-secondary mb-4">Kembali</a>
 
     <div class="card p-4">
         <h2 class="fw-bold mb-4">Tambah Guru Baru</h2>

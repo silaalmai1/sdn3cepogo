@@ -1,5 +1,23 @@
 @extends('layouts.app')
 
+@php
+    $schoolName = App\Models\Setting::get('school_name', 'SD Negeri 1-3 Cepogo');
+
+    $welcomeSd1Name = App\Models\Setting::get('welcome_sd1_name', 'Nama Kepala SD 1');
+    $welcomeSd1Title = App\Models\Setting::get('welcome_sd1_title', 'Kepala SD Negeri 1 Cepogo');
+    $welcomeSd1Message = App\Models\Setting::get(
+        'welcome_sd1_message',
+        'Puji syukur kepada Tuhan Yang Maha Esa, website sekolah ini hadir sebagai sarana informasi bagi masyarakat. Kami berkomitmen membentuk siswa yang berprestasi, berkarakter, dan siap menghadapi masa depan.',
+    );
+
+    $welcomeSd3Name = App\Models\Setting::get('welcome_sd3_name', 'Nama Kepala SD 3');
+    $welcomeSd3Title = App\Models\Setting::get('welcome_sd3_title', 'Kepala SD Negeri 3 Cepogo');
+    $welcomeSd3Message = App\Models\Setting::get(
+        'welcome_sd3_message',
+        'Kami berharap website ini menjadi jembatan komunikasi antara sekolah dan masyarakat. Semoga sekolah kita terus berkembang dan menghasilkan generasi yang unggul.',
+    );
+@endphp
+
 @section('content')
     <section class="hero-section">
         <div class="hero-slideshow">
@@ -69,23 +87,18 @@
         <div class="container">
             <div class="text-center mb-3">
                 <h2 class="text-center fw-semibold mb-2" style="font-size:28px;">Sambutan Kepala Sekolah</h2>
-                <p class="text-center text-muted" style="font-size:13px;">SD Negeri 1 & 3 Cepogo</p>
+                <p class="text-center text-muted" style="font-size:13px;">{{ $schoolName }}</p>
                 <div class="row">
                     <!-- KEPSEK SD 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card card-sambutan p-3 h-100">
                             <div class="text-center">
                                 <img src="/images/kepsek1.jpg" class="rounded-circle mb-2" width="110">
-                                <h5 class="mb-0" style="font-size:14px;">Nama Kepala SD 1</h5>
-                                <small class="text-muted">Kepala SD Negeri 1 Cepogo</small>
+                                <h5 class="mb-0" style="font-size:14px;">{{ $welcomeSd1Name }}</h5>
+                                <small class="text-muted">{{ $welcomeSd1Title }}</small>
                             </div>
 
-                            <p class="mt-3 sambutan-text">
-                                Puji syukur kepada Tuhan Yang Maha Esa, website sekolah ini
-                                hadir sebagai sarana informasi bagi masyarakat.
-                                Kami berkomitmen membentuk siswa yang berprestasi,
-                                berkarakter, dan siap menghadapi masa depan.
-                            </p>
+                            <p class="mt-3 sambutan-text">{{ $welcomeSd1Message }}</p>
                         </div>
                     </div>
 
@@ -94,20 +107,13 @@
                         <div class="card card-sambutan p-3 h-100">
                             <div class="text-center">
                                 <img src="/images/kepsek2.jpg" class="rounded-circle mb-2" width="110">
-                                <h5 class="mb-0" style="font-size:14px;">Nama Kepala SD 3</h5>
-                                <small class="text-muted">Kepala SD Negeri 3 Cepogo</small>
+                                <h5 class="mb-0" style="font-size:14px;">{{ $welcomeSd3Name }}</h5>
+                                <small class="text-muted">{{ $welcomeSd3Title }}</small>
                             </div>
 
-                            <p class="mt-3 sambutan-text">
-                                Kami berharap website ini menjadi jembatan komunikasi
-                                antara sekolah dan masyarakat. Semoga sekolah kita
-                                terus berkembang dan menghasilkan generasi yang unggul.
-                            </p>
+                            <p class="mt-3 sambutan-text">{{ $welcomeSd3Message }}</p>
                         </div>
                     </div>
-
-                </div>
-            </div>
     </section>
 
     {{-- SECTION PRESTASI TERBARU --}}

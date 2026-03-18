@@ -50,7 +50,7 @@
         }
 
         .logo-img {
-            transition: all 0.3s ease;
+            transition: filter 0.3s ease;
         }
 
         .nav-link {
@@ -64,6 +64,11 @@
             border-bottom: 3px solid #0d6efd;
         }
 
+        .navbar-brand {
+            padding: 0;
+            line-height: 1;
+        }
+
         .social-icon i {
             font-size: 16px;
             margin-left: 14px;
@@ -72,11 +77,25 @@
         }
 
         #darkToggle {
-            border: none;
+            border: 1px solid transparent;
             background: white;
             border-radius: 8px;
-            padding: 8px 12px;
-            transition: all 0.3s ease;
+            width: 44px;
+            height: 40px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #darkIcon {
+            font-size: 1.25rem;
+            line-height: 1;
+            width: 1.25rem;
+            display: inline-block;
+            text-align: center;
         }
 
         #darkToggle:focus {
@@ -642,7 +661,6 @@
         body.dark-mode .navbar-brand {
             background: transparent;
             backdrop-filter: none;
-            padding: 8px 12px;
         }
 
         /* Ekstrakulikuler Card */
@@ -784,6 +802,13 @@
 
         body.dark-mode .visi-misi-card .text-muted {
             color: #aaa !important;
+        }
+
+        body.theme-switching *,
+        body.theme-switching *::before,
+        body.theme-switching *::after {
+            transition: none !important;
+            animation: none !important;
         }
 
         /* ===== RESPONSIVE MOBILE ===== */
@@ -929,6 +954,15 @@
     <script>
         const toggleBtn = document.getElementById('darkToggle');
         const icon = document.getElementById('darkIcon');
+        let themeSwitchTimeout;
+
+        const freezeTransitions = () => {
+            document.body.classList.add('theme-switching');
+            clearTimeout(themeSwitchTimeout);
+            themeSwitchTimeout = setTimeout(() => {
+                document.body.classList.remove('theme-switching');
+            }, 140);
+        };
 
         // cek mode tersimpan
         if (localStorage.getItem('theme') === 'dark') {
@@ -937,6 +971,7 @@
         }
 
         toggleBtn.onclick = () => {
+            freezeTransitions();
             document.body.classList.toggle('dark-mode');
 
             if (document.body.classList.contains('dark-mode')) {

@@ -3,7 +3,7 @@
 @section('title', 'Edit Poster Berita')
 
 @section('content')
-    <a href="/admin/berita" class="btn btn-secondary mb-4">← Kembali</a>
+    <a href="/admin/berita" class="btn btn-secondary mb-4">Kembali</a>
 
     <div class="card p-4">
         <h2 class="fw-bold mb-4">Edit Poster Berita</h2>

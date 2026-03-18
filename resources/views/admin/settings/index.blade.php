@@ -127,6 +127,118 @@
 
                         <hr class="my-4">
 
+                        <div class="mb-4">
+                            <h5 class="mb-3">Konten Halaman</h5>
+
+                            <div class="mb-3">
+                                <label for="about_school_content" class="form-label">Tentang Sekolah</label>
+                                <textarea class="form-control @error('about_school_content') is-invalid @enderror" id="about_school_content"
+                                    name="about_school_content" rows="6" placeholder="Tulis profil singkat sekolah...">{{ old(
+                                        'about_school_content',
+                                        App\Models\Setting::get(
+                                            'about_school_content',
+                                            'SD Negeri 1-3 Cepogo merupakan sekolah dasar yang berlokasi di Desa Cepogo, Kecamatan Kembang, Kabupaten Jepara, Provinsi Jawa Tengah.
+                                                                        
+                                                                        Sekolah kami berkomitmen menciptakan lingkungan belajar yang nyaman, kreatif, dan berprestasi untuk membentuk generasi yang cerdas, berakhlak, dan berkarakter.
+                                                                        
+                                                                        Dengan dukungan tenaga pendidik profesional dan fasilitas yang memadai, SD Negeri 1-3 Cepogo terus berkembang untuk memberikan pendidikan terbaik bagi siswa.',
+                                        ),
+                                    ) }}</textarea>
+                                <small class="text-muted">Gunakan baris kosong untuk memisahkan paragraf.</small>
+                                @error('about_school_content')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="vision_text" class="form-label">Visi Sekolah</label>
+                                <textarea class="form-control @error('vision_text') is-invalid @enderror" id="vision_text" name="vision_text"
+                                    rows="3" placeholder="Tulis visi sekolah...">{{ old('vision_text', App\Models\Setting::get('vision_text', 'Mewujudkan peserta didik unggul dalam prestasi yang berprofil pelajar pancasila serta peduli terhadap lingkungan.')) }}</textarea>
+                                @error('vision_text')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="mission_text" class="form-label">Misi Sekolah</label>
+                                <textarea class="form-control @error('mission_text') is-invalid @enderror" id="mission_text" name="mission_text"
+                                    rows="6" placeholder="Satu misi per baris...">{{ old('mission_text', App\Models\Setting::get('mission_text', "Meningkatkan keimanan dan ketaqwaan kepada Tuhan YME melalui penanaman budi pekerti dan program kegiatan keagamaan\nMewujudkan pengembangan kurikulum yang meliputi 8 standar pendidikan\nMewujudkan pelaksanaan pembelajaran aktif, inovatif, kreatif, efektif dan menyenangkan sesuai dengan kebutuhan peserta didik\nMeningkatkan prestasi akademik dan non akademik sesuai bakat dan minat\nMeningkatkan sikap jujur, disiplin, peduli, santun, percaya diri, semangat kolaborasi dalam berinteraksi dengan lingkungan sosial dan alam")) }}</textarea>
+                                <small class="text-muted">Isi satu misi per baris, otomatis menjadi daftar di halaman
+                                    publik.</small>
+                                @error('mission_text')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="mb-3">Sambutan Kepala SD Negeri 1</h6>
+                                    <div class="mb-3">
+                                        <label for="welcome_sd1_name" class="form-label">Nama</label>
+                                        <input type="text"
+                                            class="form-control @error('welcome_sd1_name') is-invalid @enderror"
+                                            id="welcome_sd1_name" name="welcome_sd1_name"
+                                            value="{{ old('welcome_sd1_name', App\Models\Setting::get('welcome_sd1_name', 'Nama Kepala SD 1')) }}">
+                                        @error('welcome_sd1_name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="welcome_sd1_title" class="form-label">Jabatan</label>
+                                        <input type="text"
+                                            class="form-control @error('welcome_sd1_title') is-invalid @enderror"
+                                            id="welcome_sd1_title" name="welcome_sd1_title"
+                                            value="{{ old('welcome_sd1_title', App\Models\Setting::get('welcome_sd1_title', 'Kepala SD Negeri 1 Cepogo')) }}">
+                                        @error('welcome_sd1_title')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="welcome_sd1_message" class="form-label">Isi Sambutan</label>
+                                        <textarea class="form-control @error('welcome_sd1_message') is-invalid @enderror" id="welcome_sd1_message"
+                                            name="welcome_sd1_message" rows="5">{{ old('welcome_sd1_message', App\Models\Setting::get('welcome_sd1_message', 'Puji syukur kepada Tuhan Yang Maha Esa, website sekolah ini hadir sebagai sarana informasi bagi masyarakat. Kami berkomitmen membentuk siswa yang berprestasi, berkarakter, dan siap menghadapi masa depan.')) }}</textarea>
+                                        @error('welcome_sd1_message')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <h6 class="mb-3">Sambutan Kepala SD Negeri 3</h6>
+                                    <div class="mb-3">
+                                        <label for="welcome_sd3_name" class="form-label">Nama</label>
+                                        <input type="text"
+                                            class="form-control @error('welcome_sd3_name') is-invalid @enderror"
+                                            id="welcome_sd3_name" name="welcome_sd3_name"
+                                            value="{{ old('welcome_sd3_name', App\Models\Setting::get('welcome_sd3_name', 'Nama Kepala SD 3')) }}">
+                                        @error('welcome_sd3_name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="welcome_sd3_title" class="form-label">Jabatan</label>
+                                        <input type="text"
+                                            class="form-control @error('welcome_sd3_title') is-invalid @enderror"
+                                            id="welcome_sd3_title" name="welcome_sd3_title"
+                                            value="{{ old('welcome_sd3_title', App\Models\Setting::get('welcome_sd3_title', 'Kepala SD Negeri 3 Cepogo')) }}">
+                                        @error('welcome_sd3_title')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="welcome_sd3_message" class="form-label">Isi Sambutan</label>
+                                        <textarea class="form-control @error('welcome_sd3_message') is-invalid @enderror" id="welcome_sd3_message"
+                                            name="welcome_sd3_message" rows="5">{{ old('welcome_sd3_message', App\Models\Setting::get('welcome_sd3_message', 'Kami berharap website ini menjadi jembatan komunikasi antara sekolah dan masyarakat. Semoga sekolah kita terus berkembang dan menghasilkan generasi yang unggul.')) }}</textarea>
+                                        @error('welcome_sd3_message')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
                         @php
                             $defaultExtracurricular = [
                                 'Pramuka',
@@ -195,7 +307,7 @@
                                 <i class="fas fa-save me-2"></i>Simpan Pengaturan
                             </button>
                             <a href="{{ url('/admin') }}" class="btn btn-secondary">
-                                <i class="fas fa-arrow-left me-2"></i>Kembali
+                                Kembali
                             </a>
                         </div>
                     </form>

@@ -3,7 +3,7 @@
 @section('content')
     <section class="container py-5">
         <a href="/prestasi" class="btn btn-outline-secondary mb-4">
-            <i class="bi bi-arrow-left"></i> Kembali ke Prestasi
+            Kembali ke Prestasi
         </a>
 
         <div class="row g-4">
