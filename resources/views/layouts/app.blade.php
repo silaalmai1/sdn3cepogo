@@ -804,6 +804,10 @@
             color: #aaa !important;
         }
 
+        body.dark-mode .detail-text {
+            color: #e4e4e4 !important;
+        }
+
         body.theme-switching *,
         body.theme-switching *::before,
         body.theme-switching *::after {

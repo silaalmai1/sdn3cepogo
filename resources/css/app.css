@@ -54,11 +54,54 @@
 }
 
 .prestasi-card .card-img-top {
+    transition: opacity 0.3s ease;
+}
+
+/* Baca Selengkapnya Button */
+.btn-baca-selengkapnya {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+.btn-baca-selengkapnya:hover {
+    background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4);
+    color: white !important;
+}
+
+.btn-baca-selengkapnya:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
+}
+
+.btn-baca-selengkapnya i {
     transition: transform 0.3s ease;
 }
 
-.prestasi-card:hover .card-img-top {
-    transform: scale(1.05);
+.btn-baca-selengkapnya:hover i {
+    transform: translateX(3px);
+}
+    box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
+}
+
+.btn-baca-selengkapnya i {
+    transition: transform 0.3s ease;
+}
+
+.btn-baca-selengkapnya:hover i {
+    transform: translateX(3px);
 }
 
 /* Guru Card Styles */
@@ -103,4 +146,38 @@
 .contact-item:hover {
     background-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-5px);
+}
+
+/* Detail Text Dark Mode */
+body.dark-mode .detail-text {
+    color: #e4e4e4 !important;
+}
+
+/* Prestasi List Page Dark Mode */
+body.dark-mode section.py-5.bg-white {
+    background: #121212 !important;
+}
+
+body.dark-mode .prestasi-card .card-title {
+    color: #ffffff !important;
+}
+
+body.dark-mode .prestasi-card .card-text {
+    color: #b0b0b0 !important;
+}
+
+/* Empty State */
+body.dark-mode .text-muted {
+    color: #a0a0a0 !important;
+}
+
+/* Dark Mode Button */
+body.dark-mode .btn-baca-selengkapnya {
+    background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%);
+    box-shadow: 0 4px 12px rgba(100, 181, 246, 0.4);
+}
+
+body.dark-mode .btn-baca-selengkapnya:hover {
+    background: linear-gradient(135deg, #42a5f5 0%, #2196f3 100%);
+    box-shadow: 0 6px 20px rgba(100, 181, 246, 0.5);
 }
