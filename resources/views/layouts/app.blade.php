@@ -317,6 +317,27 @@
             border: none;
         }
 
+        .sambutan-layout {
+            align-items: center;
+        }
+
+        .sambutan-photo {
+            width: 100%;
+            max-width: 360px;
+            height: clamp(250px, 46vw, 430px);
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .sambutan-name {
+            font-size: clamp(17px, 2.8vw, 27px);
+        }
+
+        .sambutan-role {
+            font-size: clamp(14px, 2.1vw, 17px);
+        }
+
         .sambutan-title {
             font-size: 31px;
             font-weight: 600;
@@ -330,6 +351,12 @@
             font-size: 15px;
             line-height: 1.7;
             text-align: justify;
+        }
+
+        @media (max-width: 767.98px) {
+            .sambutan-photo {
+                height: clamp(220px, 48vw, 300px);
+            }
         }
 
         /* ===== WRAPPER DETAIL ===== */

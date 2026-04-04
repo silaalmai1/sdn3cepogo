@@ -13,11 +13,15 @@
 
             <div class="row g-4">
                 @forelse ($beritas as $berita)
+                    @php
+                        $posterUrl = asset('storage/' . $berita->gambar);
+                    @endphp
                     <div class="col-12 col-sm-6 col-lg-4">
                         <div class="card berita-card h-100 border-0 shadow-sm">
                             @if ($berita->gambar)
-                                <a href="{{ asset('storage/' . $berita->gambar) }}" target="_blank"
-                                    rel="noopener noreferrer">
+                                <a href="#" class="poster-trigger" data-bs-toggle="modal"
+                                    data-bs-target="#posterPreviewModal" data-poster-src="{{ $posterUrl }}"
+                                    data-poster-alt="Poster berita {{ $loop->iteration }}">
                                     <img src="{{ asset('storage/' . $berita->gambar) }}" class="berita-card-image"
                                         alt="Poster berita {{ $loop->iteration }}">
                                 </a>
@@ -35,9 +39,10 @@
                                     </small>
                                 </div>
                                 @if ($berita->gambar)
-                                    <a href="{{ asset('storage/' . $berita->gambar) }}" target="_blank"
-                                        rel="noopener noreferrer" class="btn btn-outline-primary btn-sm mt-3">Buka
-                                        Poster</a>
+                                    <a href="#" class="btn btn-outline-primary btn-sm mt-3 poster-trigger"
+                                        data-bs-toggle="modal" data-bs-target="#posterPreviewModal"
+                                        data-poster-src="{{ $posterUrl }}"
+                                        data-poster-alt="Poster berita {{ $loop->iteration }}">Buka Poster</a>
                                 @endif
                             </div>
                         </div>
@@ -52,4 +57,40 @@
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="posterPreviewModal" tabindex="-1" aria-labelledby="posterPreviewModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="posterPreviewModalLabel">Preview Poster Berita</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-2 p-md-3">
+                    <img id="posterPreviewImage" src="" alt="Preview poster" class="img-fluid w-100 rounded-2">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const triggers = document.querySelectorAll('.poster-trigger');
+            const previewImage = document.getElementById('posterPreviewImage');
+
+            triggers.forEach((trigger) => {
+                trigger.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const posterSrc = this.dataset.posterSrc;
+                    const posterAlt = this.dataset.posterAlt || 'Preview poster';
+
+                    if (previewImage && posterSrc) {
+                        previewImage.src = posterSrc;
+                        previewImage.alt = posterAlt;
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

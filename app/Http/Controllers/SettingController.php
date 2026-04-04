@@ -26,15 +26,20 @@ class SettingController extends Controller
             'school_address' => 'required|string',
             'school_phone' => 'nullable|string|max:50',
             'school_email' => 'nullable|email|max:255',
+            'total_active_students' => 'nullable|integer|min:0|max:100000',
             'about_school_content' => 'nullable|string',
             'vision_text' => 'nullable|string',
             'mission_text' => 'nullable|string',
             'welcome_sd1_name' => 'nullable|string|max:255',
             'welcome_sd1_title' => 'nullable|string|max:255',
             'welcome_sd1_message' => 'nullable|string',
+            'welcome_sd1_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'welcome_sd1_photo_fit' => 'nullable|in:cover,contain',
             'welcome_sd3_name' => 'nullable|string|max:255',
             'welcome_sd3_title' => 'nullable|string|max:255',
             'welcome_sd3_message' => 'nullable|string',
+            'welcome_sd3_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'welcome_sd3_photo_fit' => 'nullable|in:cover,contain',
             'site_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'extracurricular_items' => 'nullable|array',
             'extracurricular_items.*' => 'nullable|string|max:100',
@@ -52,15 +57,18 @@ class SettingController extends Controller
         Setting::set('school_address', $request->school_address);
         Setting::set('school_phone', $request->school_phone);
         Setting::set('school_email', $request->school_email);
+        Setting::set('total_active_students', (string) $request->input('total_active_students', 63));
         Setting::set('about_school_content', $request->about_school_content);
         Setting::set('vision_text', $request->vision_text);
         Setting::set('mission_text', $request->mission_text);
         Setting::set('welcome_sd1_name', $request->welcome_sd1_name);
         Setting::set('welcome_sd1_title', $request->welcome_sd1_title);
         Setting::set('welcome_sd1_message', $request->welcome_sd1_message);
+        Setting::set('welcome_sd1_photo_fit', $request->input('welcome_sd1_photo_fit', 'cover'));
         Setting::set('welcome_sd3_name', $request->welcome_sd3_name);
         Setting::set('welcome_sd3_title', $request->welcome_sd3_title);
         Setting::set('welcome_sd3_message', $request->welcome_sd3_message);
+        Setting::set('welcome_sd3_photo_fit', $request->input('welcome_sd3_photo_fit', 'cover'));
         Setting::set('extracurricular_items', json_encode($extracurricularItems));
 
         // Handle logo upload
@@ -75,6 +83,28 @@ class SettingController extends Controller
             // Store new logo
             $logoPath = $request->file('site_logo')->store('logos', 'public');
             Setting::set('site_logo', $logoPath);
+        }
+
+        if ($request->hasFile('welcome_sd1_photo')) {
+            $oldPhotoSd1 = Setting::get('welcome_sd1_photo', 'images/kepsek1.jpg');
+
+            if ($oldPhotoSd1 && $oldPhotoSd1 != 'images/kepsek1.jpg' && Storage::disk('public')->exists($oldPhotoSd1)) {
+                Storage::disk('public')->delete($oldPhotoSd1);
+            }
+
+            $photoPathSd1 = $request->file('welcome_sd1_photo')->store('kepsek', 'public');
+            Setting::set('welcome_sd1_photo', $photoPathSd1);
+        }
+
+        if ($request->hasFile('welcome_sd3_photo')) {
+            $oldPhotoSd3 = Setting::get('welcome_sd3_photo', 'images/kepsek2.jpg');
+
+            if ($oldPhotoSd3 && $oldPhotoSd3 != 'images/kepsek2.jpg' && Storage::disk('public')->exists($oldPhotoSd3)) {
+                Storage::disk('public')->delete($oldPhotoSd3);
+            }
+
+            $photoPathSd3 = $request->file('welcome_sd3_photo')->store('kepsek', 'public');
+            Setting::set('welcome_sd3_photo', $photoPathSd3);
         }
 
         // Clear cache
