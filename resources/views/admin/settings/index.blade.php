@@ -125,6 +125,18 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="hero_home_title" class="form-label">Judul Banner Beranda</label>
+                                <input type="text" class="form-control @error('hero_home_title') is-invalid @enderror"
+                                    id="hero_home_title" name="hero_home_title"
+                                    value="{{ old('hero_home_title', App\Models\Setting::get('hero_home_title', App\Models\Setting::get('school_name', 'SD Negeri 1-3 Cepogo'))) }}"
+                                    placeholder="Contoh: SDN 1 dan 3 Cepogo">
+                                <small class="text-muted">Teks ini tampil besar pada banner halaman beranda.</small>
+                                @error('hero_home_title')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="school_address" class="form-label">Alamat Lengkap <span
                                         class="text-danger">*</span></label>
                                 <textarea class="form-control @error('school_address') is-invalid @enderror" id="school_address" name="school_address"
@@ -165,6 +177,107 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="operational_days" class="form-label">Hari Operasional</label>
+                                        <input type="text"
+                                            class="form-control @error('operational_days') is-invalid @enderror"
+                                            id="operational_days" name="operational_days"
+                                            value="{{ old('operational_days', App\Models\Setting::get('operational_days', 'Senin - Sabtu')) }}"
+                                            placeholder="Contoh: Senin - Sabtu">
+                                        @error('operational_days')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="operational_hours" class="form-label">Jam Operasional</label>
+                                        <input type="text"
+                                            class="form-control @error('operational_hours') is-invalid @enderror"
+                                            id="operational_hours" name="operational_hours"
+                                            value="{{ old('operational_hours', App\Models\Setting::get('operational_hours', '07:00 - 13:00 WIB')) }}"
+                                            placeholder="Contoh: 07:00 - 13:00 WIB">
+                                        @error('operational_hours')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="operational_holiday" class="form-label">Status Hari Libur</label>
+                                        <input type="text"
+                                            class="form-control @error('operational_holiday') is-invalid @enderror"
+                                            id="operational_holiday" name="operational_holiday"
+                                            value="{{ old('operational_holiday', App\Models\Setting::get('operational_holiday', 'Tutup')) }}"
+                                            placeholder="Contoh: Tutup">
+                                        @error('operational_holiday')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Media Sosial</label>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <input type="url"
+                                            class="form-control @error('social_facebook_url') is-invalid @enderror"
+                                            id="social_facebook_url" name="social_facebook_url"
+                                            value="{{ old('social_facebook_url', App\Models\Setting::get('social_facebook_url', '')) }}"
+                                            placeholder="URL Facebook (opsional)">
+                                        @error('social_facebook_url')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="url"
+                                            class="form-control @error('social_instagram_url') is-invalid @enderror"
+                                            id="social_instagram_url" name="social_instagram_url"
+                                            value="{{ old('social_instagram_url', App\Models\Setting::get('social_instagram_url', '')) }}"
+                                            placeholder="URL Instagram (opsional)">
+                                        @error('social_instagram_url')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="url"
+                                            class="form-control @error('social_youtube_url') is-invalid @enderror"
+                                            id="social_youtube_url" name="social_youtube_url"
+                                            value="{{ old('social_youtube_url', App\Models\Setting::get('social_youtube_url', 'https://www.youtube.com/@sdn1-3cepogo26')) }}"
+                                            placeholder="URL YouTube (opsional)">
+                                        @error('social_youtube_url')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="url"
+                                            class="form-control @error('social_tiktok_url') is-invalid @enderror"
+                                            id="social_tiktok_url" name="social_tiktok_url"
+                                            value="{{ old('social_tiktok_url', App\Models\Setting::get('social_tiktok_url', '')) }}"
+                                            placeholder="URL TikTok (opsional)">
+                                        @error('social_tiktok_url')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="map_embed_url" class="form-label">URL Embed Google Maps</label>
+                                <input type="url" class="form-control @error('map_embed_url') is-invalid @enderror"
+                                    id="map_embed_url" name="map_embed_url"
+                                    value="{{ old('map_embed_url', App\Models\Setting::get('map_embed_url', 'https://maps.google.com/maps?q=SD%20Negeri%201%203%20Cepogo%2C%20Jepara&t=&z=17&ie=UTF8&iwloc=&output=embed')) }}"
+                                    placeholder="Tempel URL embed dari Google Maps">
+                                <small class="text-muted">Gunakan link dari tombol Share > Embed a map di Google
+                                    Maps.</small>
+                                @error('map_embed_url')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="mb-3">
                                 <label for="total_active_students" class="form-label">Total Siswa Aktif</label>
                                 <input type="number"
@@ -192,10 +305,10 @@
                                         App\Models\Setting::get(
                                             'about_school_content',
                                             'SD Negeri 1-3 Cepogo merupakan sekolah dasar yang berlokasi di Desa Cepogo, Kecamatan Kembang, Kabupaten Jepara, Provinsi Jawa Tengah.
-                                                                                                                                                                                                                        
-                                                                                                                                                                                                                        Sekolah kami berkomitmen menciptakan lingkungan belajar yang nyaman, kreatif, dan berprestasi untuk membentuk generasi yang cerdas, berakhlak, dan berkarakter.
-                                                                                                                                                                                                                        
-                                                                                                                                                                                                                        Dengan dukungan tenaga pendidik profesional dan fasilitas yang memadai, SD Negeri 1-3 Cepogo terus berkembang untuk memberikan pendidikan terbaik bagi siswa.',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Sekolah kami berkomitmen menciptakan lingkungan belajar yang nyaman, kreatif, dan berprestasi untuk membentuk generasi yang cerdas, berakhlak, dan berkarakter.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Dengan dukungan tenaga pendidik profesional dan fasilitas yang memadai, SD Negeri 1-3 Cepogo terus berkembang untuk memberikan pendidikan terbaik bagi siswa.',
                                         ),
                                     ) }}</textarea>
                                 <small class="text-muted">Gunakan baris kosong untuk memisahkan paragraf.</small>
@@ -216,7 +329,7 @@
                             <div class="mb-3">
                                 <label for="mission_text" class="form-label">Misi Sekolah</label>
                                 <textarea class="form-control @error('mission_text') is-invalid @enderror" id="mission_text" name="mission_text"
-                                    rows="6" placeholder="Satu misi per baris...">{{ old('mission_text', App\Models\Setting::get('mission_text', "Meningkatkan keimanan dan ketaqwaan kepada Tuhan YME melalui penanaman budi pekerti dan program kegiatan keagamaan\nMewujudkan pengembangan kurikulum yang meliputi 8 standar pendidikan\nMewujudkan pelaksanaan pembelajaran aktif, inovatif, kreatif, efektif dan menyenangkan sesuai dengan kebutuhan peserta didik\nMeningkatkan prestasi akademik dan non akademik sesuai bakat dan minat\nMeningkatkan sikap jujur, disiplin, peduli, santun, percaya diri, semangat kolaborasi dalam berinteraksi dengan lingkungan sosial dan alam")) }}</textarea>
+                                    rows="6" placeholder="Satu misi per baris...">{{ trim(old('mission_text', App\Models\Setting::get('mission_text', "Meningkatkan keimanan dan ketaqwaan kepada Tuhan YME melalui penanaman budi pekerti dan program kegiatan keagamaan\nMewujudkan pengembangan kurikulum yang meliputi 8 standar pendidikan\nMewujudkan pelaksanaan pembelajaran aktif, inovatif, kreatif, efektif dan menyenangkan sesuai dengan kebutuhan peserta didik\nMeningkatkan prestasi akademik dan non akademik sesuai bakat dan minat\nMeningkatkan sikap jujur, disiplin, peduli, santun, percaya diri, semangat kolaborasi dalam berinteraksi dengan lingkungan sosial dan alam"))) }}</textarea>
                                 <small class="text-muted">Isi satu misi per baris, otomatis menjadi daftar di halaman
                                     publik.</small>
                                 @error('mission_text')
@@ -406,6 +519,13 @@
                                 App\Models\Setting::get('extracurricular_items', json_encode($defaultExtracurricular)),
                                 true,
                             );
+                            $savedExtracurricularLogos = json_decode(
+                                App\Models\Setting::get('extracurricular_logos', '{}'),
+                                true,
+                            );
+                            $savedExtracurricularLogos = is_array($savedExtracurricularLogos)
+                                ? $savedExtracurricularLogos
+                                : [];
                             $extracurricularItems = old(
                                 'extracurricular_items',
                                 is_array($savedExtracurricular) ? $savedExtracurricular : $defaultExtracurricular,
@@ -425,26 +545,108 @@
                                 </button>
                             </div>
 
-                            <div id="extracurricular-list" class="d-grid gap-2">
-                                @forelse ($extracurricularItems as $item)
-                                    <div class="input-group extracurricular-item">
-                                        <span class="input-group-text"><i class="fas fa-star"></i></span>
-                                        <input type="text" class="form-control" name="extracurricular_items[]"
-                                            value="{{ $item }}" placeholder="Nama ekstrakurikuler">
-                                        <button type="button" class="btn btn-outline-danger"
-                                            onclick="removeExtracurricularItem(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                            <div id="extracurricular-list" class="d-grid gap-3">
+                                @forelse ($extracurricularItems as $index => $item)
+                                    @php
+                                        $savedLogoPath = $savedExtracurricularLogos[$item] ?? null;
+                                        $savedLogoNormalized = is_string($savedLogoPath)
+                                            ? trim(str_replace('\\', '/', $savedLogoPath))
+                                            : null;
+
+                                        if (
+                                            is_string($savedLogoNormalized) &&
+                                            preg_match('/^https?:\/\//i', $savedLogoNormalized)
+                                        ) {
+                                            $parsedPath = parse_url($savedLogoNormalized, PHP_URL_PATH);
+                                            $savedLogoNormalized = is_string($parsedPath)
+                                                ? $parsedPath
+                                                : $savedLogoNormalized;
+                                        }
+
+                                        $savedLogoNormalized = $savedLogoNormalized
+                                            ? ltrim($savedLogoNormalized, '/')
+                                            : null;
+                                        $savedLogoUrl = null;
+
+                                        if ($savedLogoNormalized) {
+                                            if (
+                                                preg_match('/^https?:\/\//i', $savedLogoNormalized) ||
+                                                str_starts_with($savedLogoNormalized, '//')
+                                            ) {
+                                                $savedLogoUrl = $savedLogoNormalized;
+                                            } elseif (str_starts_with($savedLogoNormalized, 'images/')) {
+                                                $savedLogoUrl = asset($savedLogoNormalized);
+                                            } elseif (str_starts_with($savedLogoNormalized, 'storage/')) {
+                                                $savedLogoUrl = route('media.file', [
+                                                    'path' => ltrim(
+                                                        substr($savedLogoNormalized, strlen('storage/')),
+                                                        '/',
+                                                    ),
+                                                ]);
+                                            } else {
+                                                $savedLogoUrl = route('media.file', ['path' => $savedLogoNormalized]);
+                                            }
+                                        }
+                                    @endphp
+                                    <div class="border rounded p-3 extracurricular-item"
+                                        data-index="{{ $index }}">
+                                        <div class="row g-2 align-items-center">
+                                            <div class="col-md-5">
+                                                <label class="form-label mb-1">Nama Ekstrakurikuler</label>
+                                                <input type="text" class="form-control" name="extracurricular_items[]"
+                                                    value="{{ $item }}" placeholder="Nama ekstrakurikuler">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label class="form-label mb-1">Logo (Opsional)</label>
+                                                <input type="file" class="form-control extracurricular-logo-input"
+                                                    name="extracurricular_logos[{{ $index }}]" accept="image/*"
+                                                    onchange="previewExtracurricularLogo(this)">
+                                                <small class="text-muted">Format: JPG, PNG, GIF, WEBP (Max: 2MB)</small>
+                                            </div>
+                                            <div class="col-md-2 text-md-end">
+                                                <button type="button" class="btn btn-outline-danger mt-4"
+                                                    onclick="removeExtracurricularItem(this)">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="mt-2 d-flex align-items-center gap-2 extracurricular-logo-preview-wrapper {{ $savedLogoUrl ? '' : 'd-none' }}">
+                                            <img src="{{ $savedLogoUrl }}" alt="Logo ekstrakurikuler"
+                                                class="rounded border extracurricular-logo-preview"
+                                                style="width: 48px; height: 48px; object-fit: cover;">
+                                            <small class="text-muted">Logo saat ini</small>
+                                        </div>
                                     </div>
                                 @empty
-                                    <div class="input-group extracurricular-item">
-                                        <span class="input-group-text"><i class="fas fa-star"></i></span>
-                                        <input type="text" class="form-control" name="extracurricular_items[]"
-                                            placeholder="Nama ekstrakurikuler">
-                                        <button type="button" class="btn btn-outline-danger"
-                                            onclick="removeExtracurricularItem(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                    <div class="border rounded p-3 extracurricular-item" data-index="0">
+                                        <div class="row g-2 align-items-center">
+                                            <div class="col-md-5">
+                                                <label class="form-label mb-1">Nama Ekstrakurikuler</label>
+                                                <input type="text" class="form-control" name="extracurricular_items[]"
+                                                    placeholder="Nama ekstrakurikuler">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label class="form-label mb-1">Logo (Opsional)</label>
+                                                <input type="file" class="form-control extracurricular-logo-input"
+                                                    name="extracurricular_logos[0]" accept="image/*"
+                                                    onchange="previewExtracurricularLogo(this)">
+                                                <small class="text-muted">Format: JPG, PNG, GIF, WEBP (Max: 2MB)</small>
+                                            </div>
+                                            <div class="col-md-2 text-md-end">
+                                                <button type="button" class="btn btn-outline-danger mt-4"
+                                                    onclick="removeExtracurricularItem(this)">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="mt-2 d-flex align-items-center gap-2 extracurricular-logo-preview-wrapper d-none">
+                                            <img src="" alt="Preview logo ekstrakurikuler"
+                                                class="rounded border extracurricular-logo-preview"
+                                                style="width: 48px; height: 48px; object-fit: cover;">
+                                            <small class="text-muted">Preview logo</small>
+                                        </div>
                                     </div>
                                 @endforelse
                             </div>
@@ -452,6 +654,9 @@
                                 <div class="text-danger small mt-2">{{ $message }}</div>
                             @enderror
                             @error('extracurricular_items.*')
+                                <div class="text-danger small mt-2">{{ $message }}</div>
+                            @enderror
+                            @error('extracurricular_logos.*')
                                 <div class="text-danger small mt-2">{{ $message }}</div>
                             @enderror
                         </div>
@@ -496,170 +701,244 @@
     </div>
 @endsection
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
-<script>
-    let cropperInstance = null;
-    let cropperContext = {
-        inputId: null,
-        previewId: null,
-        fitSelectId: null,
-        fileType: 'image/jpeg'
-    };
-
-    function openCropperForInput(event, inputId, previewId, fitSelectId = null) {
-        const input = event.target;
-        const file = input.files && input.files[0] ? input.files[0] : null;
-
-        if (!file) {
-            return;
-        }
-
-        cropperContext = {
-            inputId,
-            previewId,
-            fitSelectId,
-            fileType: file.type || 'image/jpeg'
+@push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+    <script>
+        let cropperInstance = null;
+        let cropperContext = {
+            inputId: null,
+            previewId: null,
+            fitSelectId: null,
+            fileType: 'image/jpeg'
         };
 
-        const modal = document.getElementById('cropperModal');
-        const image = document.getElementById('cropperImage');
-        image.src = URL.createObjectURL(file);
+        function openCropperForInput(event, inputId, previewId, fitSelectId = null) {
+            const input = event.target;
+            const file = input.files && input.files[0] ? input.files[0] : null;
 
-        modal.classList.add('show');
-        modal.setAttribute('aria-hidden', 'false');
-
-        if (cropperInstance) {
-            cropperInstance.destroy();
-        }
-
-        cropperInstance = new Cropper(image, {
-            viewMode: 1,
-            dragMode: 'move',
-            autoCropArea: 1,
-            responsive: true,
-            background: false
-        });
-    }
-
-    function rotateCropper(deg) {
-        if (cropperInstance) {
-            cropperInstance.rotate(deg);
-        }
-    }
-
-    function cancelCropper() {
-        const modal = document.getElementById('cropperModal');
-        modal.classList.remove('show');
-        modal.setAttribute('aria-hidden', 'true');
-
-        const input = document.getElementById(cropperContext.inputId || '');
-        if (input) {
-            input.value = '';
-        }
-
-        if (cropperInstance) {
-            cropperInstance.destroy();
-            cropperInstance = null;
-        }
-    }
-
-    function applyCroppedImage() {
-        if (!cropperInstance) {
-            return;
-        }
-
-        const outputType = cropperContext.fileType === 'image/png' ? 'image/png' : 'image/jpeg';
-        const canvas = cropperInstance.getCroppedCanvas({
-            maxWidth: 1800,
-            maxHeight: 1800,
-            imageSmoothingQuality: 'high'
-        });
-
-        canvas.toBlob(function(blob) {
-            if (!blob) {
+            if (!file) {
                 return;
             }
 
-            const extension = outputType === 'image/png' ? 'png' : 'jpg';
-            const croppedFile = new File([blob], `cropped-${Date.now()}.${extension}`, {
-                type: outputType
+            cropperContext = {
+                inputId,
+                previewId,
+                fitSelectId,
+                fileType: file.type || 'image/jpeg'
+            };
+
+            const modal = document.getElementById('cropperModal');
+            const image = document.getElementById('cropperImage');
+            image.src = URL.createObjectURL(file);
+
+            modal.classList.add('show');
+            modal.setAttribute('aria-hidden', 'false');
+
+            if (cropperInstance) {
+                cropperInstance.destroy();
+            }
+
+            cropperInstance = new Cropper(image, {
+                viewMode: 1,
+                dragMode: 'move',
+                autoCropArea: 1,
+                responsive: true,
+                background: false
             });
+        }
 
-            const input = document.getElementById(cropperContext.inputId);
-            const preview = document.getElementById(cropperContext.previewId);
-            if (input) {
-                const dt = new DataTransfer();
-                dt.items.add(croppedFile);
-                input.files = dt.files;
+        function rotateCropper(deg) {
+            if (cropperInstance) {
+                cropperInstance.rotate(deg);
             }
+        }
 
-            if (preview) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                };
-                reader.readAsDataURL(croppedFile);
-            }
-
-            if (cropperContext.fitSelectId) {
-                const fitSelect = document.getElementById(cropperContext.fitSelectId);
-                if (fitSelect) {
-                    applyPreviewFit(cropperContext.previewId, fitSelect.value);
-                }
-            }
-
+        function cancelCropper() {
             const modal = document.getElementById('cropperModal');
             modal.classList.remove('show');
             modal.setAttribute('aria-hidden', 'true');
 
-            cropperInstance.destroy();
-            cropperInstance = null;
-        }, outputType, 0.92);
-    }
-
-    function previewImage(event, targetId = 'logo-preview') {
-        const input = event.target;
-        const preview = document.getElementById(targetId);
-
-        if (preview && input.files && input.files[0]) {
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                preview.src = e.target.result;
+            const input = document.getElementById(cropperContext.inputId || '');
+            if (input) {
+                input.value = '';
             }
 
+            if (cropperInstance) {
+                cropperInstance.destroy();
+                cropperInstance = null;
+            }
+        }
+
+        function applyCroppedImage() {
+            if (!cropperInstance) {
+                return;
+            }
+
+            const outputType = cropperContext.fileType === 'image/png' ? 'image/png' : 'image/jpeg';
+            const canvas = cropperInstance.getCroppedCanvas({
+                maxWidth: 1800,
+                maxHeight: 1800,
+                imageSmoothingQuality: 'high'
+            });
+
+            canvas.toBlob(function(blob) {
+                if (!blob) {
+                    return;
+                }
+
+                const extension = outputType === 'image/png' ? 'png' : 'jpg';
+                const croppedFile = new File([blob], `cropped-${Date.now()}.${extension}`, {
+                    type: outputType
+                });
+
+                const input = document.getElementById(cropperContext.inputId);
+                const preview = document.getElementById(cropperContext.previewId);
+                if (input) {
+                    const dt = new DataTransfer();
+                    dt.items.add(croppedFile);
+                    input.files = dt.files;
+                }
+
+                if (preview) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                    };
+                    reader.readAsDataURL(croppedFile);
+                }
+
+                if (cropperContext.fitSelectId) {
+                    const fitSelect = document.getElementById(cropperContext.fitSelectId);
+                    if (fitSelect) {
+                        applyPreviewFit(cropperContext.previewId, fitSelect.value);
+                    }
+                }
+
+                const modal = document.getElementById('cropperModal');
+                modal.classList.remove('show');
+                modal.setAttribute('aria-hidden', 'true');
+
+                cropperInstance.destroy();
+                cropperInstance = null;
+            }, outputType, 0.92);
+        }
+
+        function previewImage(event, targetId = 'logo-preview') {
+            const input = event.target;
+            const preview = document.getElementById(targetId);
+
+            if (preview && input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function applyPreviewFit(targetId, fitMode) {
+            const preview = document.getElementById(targetId);
+            if (preview) {
+                preview.style.objectFit = fitMode;
+            }
+        }
+
+        function addExtracurricularItem() {
+            const container = document.getElementById('extracurricular-list');
+            const wrapper = document.createElement('div');
+            wrapper.className = 'border rounded p-3 extracurricular-item';
+            wrapper.innerHTML = `
+                <div class="row g-2 align-items-center">
+                    <div class="col-md-5">
+                        <label class="form-label mb-1">Nama Ekstrakurikuler</label>
+                        <input type="text" class="form-control" name="extracurricular_items[]" placeholder="Nama ekstrakurikuler">
+                    </div>
+                    <div class="col-md-5">
+                        <label class="form-label mb-1">Logo (Opsional)</label>
+                        <input type="file" class="form-control extracurricular-logo-input" accept="image/*" onchange="previewExtracurricularLogo(this)">
+                        <small class="text-muted">Format: JPG, PNG, GIF, WEBP (Max: 2MB)</small>
+                    </div>
+                    <div class="col-md-2 text-md-end">
+                        <button type="button" class="btn btn-outline-danger mt-4" onclick="removeExtracurricularItem(this)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-2 d-flex align-items-center gap-2 extracurricular-logo-preview-wrapper d-none">
+                    <img src="" alt="Preview logo ekstrakurikuler" class="rounded border extracurricular-logo-preview" style="width: 48px; height: 48px; object-fit: cover;">
+                    <small class="text-muted">Preview logo</small>
+                </div>
+            `;
+            container.appendChild(wrapper);
+            reindexExtracurricularItems();
+        }
+
+        function removeExtracurricularItem(button) {
+            const items = document.querySelectorAll('.extracurricular-item');
+            if (items.length === 1) {
+                const textInput = items[0].querySelector('input[name="extracurricular_items[]"]');
+                const fileInput = items[0].querySelector('.extracurricular-logo-input');
+                const previewWrapper = items[0].querySelector('.extracurricular-logo-preview-wrapper');
+                const previewImage = items[0].querySelector('.extracurricular-logo-preview');
+
+                if (textInput) {
+                    textInput.value = '';
+                }
+
+                if (fileInput) {
+                    fileInput.value = '';
+                }
+
+                if (previewWrapper) {
+                    previewWrapper.classList.add('d-none');
+                }
+
+                if (previewImage) {
+                    previewImage.src = '';
+                }
+                return;
+            }
+
+            button.closest('.extracurricular-item').remove();
+            reindexExtracurricularItems();
+        }
+
+        function reindexExtracurricularItems() {
+            const items = document.querySelectorAll('.extracurricular-item');
+
+            items.forEach((item, index) => {
+                item.dataset.index = index;
+
+                const fileInput = item.querySelector('.extracurricular-logo-input');
+                if (fileInput) {
+                    fileInput.name = `extracurricular_logos[${index}]`;
+                }
+            });
+        }
+
+        function previewExtracurricularLogo(input) {
+            const wrapper = input.closest('.extracurricular-item');
+            const previewWrapper = wrapper ? wrapper.querySelector('.extracurricular-logo-preview-wrapper') : null;
+            const previewImage = wrapper ? wrapper.querySelector('.extracurricular-logo-preview') : null;
+
+            if (!previewWrapper || !previewImage) {
+                return;
+            }
+
+            if (!input.files || !input.files[0]) {
+                previewWrapper.classList.add('d-none');
+                previewImage.src = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                previewWrapper.classList.remove('d-none');
+            };
             reader.readAsDataURL(input.files[0]);
         }
-    }
-
-    function applyPreviewFit(targetId, fitMode) {
-        const preview = document.getElementById(targetId);
-        if (preview) {
-            preview.style.objectFit = fitMode;
-        }
-    }
-
-    function addExtracurricularItem() {
-        const container = document.getElementById('extracurricular-list');
-        const wrapper = document.createElement('div');
-        wrapper.className = 'input-group extracurricular-item';
-        wrapper.innerHTML = `
-            <span class="input-group-text"><i class="fas fa-star"></i></span>
-            <input type="text" class="form-control" name="extracurricular_items[]" placeholder="Nama ekstrakurikuler">
-            <button type="button" class="btn btn-outline-danger" onclick="removeExtracurricularItem(this)">
-                <i class="fas fa-trash"></i>
-            </button>
-        `;
-        container.appendChild(wrapper);
-    }
-
-    function removeExtracurricularItem(button) {
-        const items = document.querySelectorAll('.extracurricular-item');
-        if (items.length === 1) {
-            items[0].querySelector('input').value = '';
-            return;
-        }
-
-        button.closest('.extracurricular-item').remove();
-    }
-</script>
+    </script>
+@endpush

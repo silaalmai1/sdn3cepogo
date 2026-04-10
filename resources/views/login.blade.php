@@ -123,12 +123,6 @@
             <button class="btn btn-login w-100 text-white">Login</button>
         </form>
 
-        <hr>
-        <div class="text-center">
-            <small class="text-muted">Belum punya akun? <a href="/register" class="text-primary fw-bold">Buat akun
-                    baru</a></small>
-        </div>
-
     </div>
     <script>
         function togglePassword() {

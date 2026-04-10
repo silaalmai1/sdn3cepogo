@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @php
+    $schoolName = App\Models\Setting::get('school_name', 'SD Negeri 1-3 Cepogo');
+
     $aboutSchoolContent = App\Models\Setting::get(
         'about_school_content',
         'SD Negeri 1-3 Cepogo merupakan sekolah dasar yang berlokasi di Desa Cepogo, Kecamatan Kembang, Kabupaten Jepara, Provinsi Jawa Tengah.
@@ -37,7 +39,7 @@ Dengan dukungan tenaga pendidik profesional dan fasilitas yang memadai, SD Neger
             <div class="text-center mb-5">
                 <p class="text-primary fw-semibold text-uppercase mb-2" style="letter-spacing: 1px; font-size: 13px;">Profil
                     Sekolah</p>
-                <h1 class="fw-bold mb-2" style="font-size: clamp(1.8rem, 2.8vw, 2.4rem);">Tentang SD Negeri 1-3 Cepogo</h1>
+                <h1 class="fw-bold mb-2" style="font-size: clamp(1.8rem, 2.8vw, 2.4rem);">Tentang {{ $schoolName }}</h1>
                 <p class="text-muted mb-0" style="max-width: 680px; margin: 0 auto;">Mengenal lingkungan sekolah, komitmen
                     pendidikan, dan arah pengembangan karakter peserta didik.</p>
             </div>
@@ -53,7 +55,7 @@ Dengan dukungan tenaga pendidik profesional dan fasilitas yang memadai, SD Neger
                 <div class="col-lg-6">
                     <div class="card border-0 shadow-sm h-100">
                         <div class="card-body p-4 p-md-5">
-                            <h2 class="fw-bold mb-3">SD Negeri 1-3 Cepogo</h2>
+                            <h2 class="fw-bold mb-3">{{ $schoolName }}</h2>
                             @forelse ($aboutSchoolParagraphs as $paragraph)
                                 <p class="text-muted {{ $loop->last ? 'mb-0' : 'mb-3' }}" style="line-height: 1.8;">
                                     {{ $paragraph }}

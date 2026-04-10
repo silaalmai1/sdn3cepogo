@@ -6,6 +6,7 @@ use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MediaController;
 use Illuminate\Support\Facades\DB;      
 use Illuminate\Support\Facades\Hash;
 
@@ -28,13 +29,15 @@ Route::get('/ekstrakulikuler', function () {
     return view('ekstrakulikuler');
 })->name('ekstrakulikuler');
 
+Route::get('/media/{path}', [MediaController::class, 'show'])
+    ->where('path', '.*')
+    ->name('media.file');
+
 
 
 Route::middleware('guestAdmin')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
-    Route::get('/register', [LoginController::class, 'registerIndex'])->name('register');
-    Route::post('/register', [LoginController::class, 'register']);
 });
 
 Route::get('/logout', [LoginController::class, 'logout']);

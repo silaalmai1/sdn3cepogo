@@ -58,12 +58,12 @@
             <div class="gallery-grid">
                 @forelse($galeris as $galeri)
                     @if (($galeri->tipe ?? 'foto') === 'video')
-                        @if (($galeri->video_sumber ?? 'url') === 'file' && $galeri->video_file)
-                            <a href="{{ asset('storage/' . $galeri->video_file) }}" class="glightbox gallery-item"
-                                data-gallery="gallery" data-type="video">
+                        @if (($galeri->video_sumber ?? 'url') === 'file' && $galeri->video_file_url)
+                            <a href="{{ $galeri->video_file_url }}" class="glightbox gallery-item" data-gallery="gallery"
+                                data-type="video">
                                 <div class="position-relative w-100 h-100">
                                     <video class="w-100 h-100" style="background:#000;" muted>
-                                        <source src="{{ asset('storage/' . $galeri->video_file) }}">
+                                        <source src="{{ $galeri->video_file_url }}">
                                     </video>
                                     <div class="position-absolute top-50 start-50 translate-middle">
                                         <i class="bi bi-play-circle-fill text-white"
@@ -105,9 +105,8 @@
                             @endif
                         @endif
                     @else
-                        <a href="{{ asset('storage/' . $galeri->gambar) }}" class="glightbox gallery-item"
-                            data-gallery="gallery">
-                            <img src="{{ asset('storage/' . $galeri->gambar) }}" alt="Galeri">
+                        <a href="{{ $galeri->gambar_url }}" class="glightbox gallery-item" data-gallery="gallery">
+                            <img src="{{ $galeri->gambar_url }}" alt="Galeri">
                         </a>
                     @endif
                 @empty

@@ -1,5 +1,11 @@
 <footer class="footer-main pt-5 pb-3 mt-4">
     <div class="container">
+        @php
+            $socialFacebook = trim((string) ($settings['social_facebook_url'] ?? ''));
+            $socialInstagram = trim((string) ($settings['social_instagram_url'] ?? ''));
+            $socialYoutube = trim((string) ($settings['social_youtube_url'] ?? ''));
+            $socialTiktok = trim((string) ($settings['social_tiktok_url'] ?? ''));
+        @endphp
         <div class="row g-4">
 
             {{-- Kolom 1: Info Sekolah --}}
@@ -16,10 +22,22 @@
                     untuk generasi penerus bangsa yang berkarakter dan berprestasi.
                 </p>
                 <div class="d-flex gap-3 mt-3">
-                    <a href="#" class="footer-sosmed"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/@sdn1-3cepogo26" target="_blank" class="footer-sosmed"><i
-                            class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="footer-sosmed"><i class="fa-brands fa-tiktok"></i></a>
+                    @if ($socialFacebook !== '')
+                        <a href="{{ $socialFacebook }}" target="_blank" rel="noopener noreferrer" class="footer-sosmed"
+                            aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    @endif
+                    @if ($socialInstagram !== '')
+                        <a href="{{ $socialInstagram }}" target="_blank" rel="noopener noreferrer" class="footer-sosmed"
+                            aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    @endif
+                    @if ($socialYoutube !== '')
+                        <a href="{{ $socialYoutube }}" target="_blank" rel="noopener noreferrer" class="footer-sosmed"
+                            aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    @endif
+                    @if ($socialTiktok !== '')
+                        <a href="{{ $socialTiktok }}" target="_blank" rel="noopener noreferrer" class="footer-sosmed"
+                            aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    @endif
                 </div>
             </div>
 

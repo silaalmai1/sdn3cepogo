@@ -29,13 +29,19 @@ class AppServiceProvider extends ServiceProvider
                 'school_address' => Setting::get('school_address', 'Desa Cepogo RT. 04 RW. 10, Kec. Kembang, Kab. Jepara, Prov. Jawa Tengah'),
                 'school_phone' => Setting::get('school_phone', '081390788465'),
                 'school_email' => Setting::get('school_email', 'sdn1.3cepogo@gmail.com'),
+                'operational_days' => Setting::get('operational_days', 'Senin - Sabtu'),
+                'operational_hours' => Setting::get('operational_hours', '07:00 - 13:00 WIB'),
+                'operational_holiday' => Setting::get('operational_holiday', 'Tutup'),
+                'social_facebook_url' => Setting::get('social_facebook_url', ''),
+                'social_instagram_url' => Setting::get('social_instagram_url', ''),
+                'social_youtube_url' => Setting::get('social_youtube_url', 'https://www.youtube.com/@sdn1-3cepogo26'),
+                'social_tiktok_url' => Setting::get('social_tiktok_url', ''),
+                'map_embed_url' => Setting::get('map_embed_url', 'https://maps.google.com/maps?q=SD%20Negeri%201%203%20Cepogo%2C%20Jepara&t=&z=17&ie=UTF8&iwloc=&output=embed'),
             ]);
 
             // Helper functions for logo URL
             $siteLogo = Setting::get('site_logo', 'images/logo.png');
-            $logoUrl = str_starts_with($siteLogo, 'images/')
-                ? asset($siteLogo)
-                : asset('storage/' . $siteLogo);
+            $logoUrl = $this->resolveAssetUrl($siteLogo) ?? asset('images/logo.png');
 
             $view->with('logoUrl', $logoUrl);
             $view->with('extracurricularItems', $this->getExtracurricularItems());
@@ -54,6 +60,8 @@ class AppServiceProvider extends ServiceProvider
         ];
 
         $storedItems = json_decode(Setting::get('extracurricular_items', json_encode($defaults)), true);
+        $storedLogoMap = json_decode(Setting::get('extracurricular_logos', '{}'), true);
+        $logoMap = is_array($storedLogoMap) ? $storedLogoMap : [];
 
         $items = collect(is_array($storedItems) ? $storedItems : $defaults)
             ->map(fn ($item) => trim((string) $item))
@@ -105,7 +113,7 @@ class AppServiceProvider extends ServiceProvider
             ],
         ];
 
-        return $items->map(function ($name) use ($metadata) {
+        return $items->map(function ($name) use ($metadata, $logoMap) {
             $defaultMeta = [
                 'icon' => 'fa-star',
                 'description' => 'Kegiatan pengembangan bakat dan minat siswa.',
@@ -114,10 +122,48 @@ class AppServiceProvider extends ServiceProvider
                 'schedule' => 'Jadwal menyesuaikan',
             ];
 
+            $logoPath = $logoMap[$name] ?? null;
+            $logoUrl = $this->resolveAssetUrl($logoPath);
+
             return array_merge([
                 'name' => $name,
+                'logo_url' => $logoUrl,
             ], $defaultMeta, $metadata[$name] ?? []);
         })->all();
+    }
+
+    private function resolveAssetUrl(?string $path): ?string
+    {
+        if (!$path) {
+            return null;
+        }
+
+        $normalized = trim(str_replace('\\', '/', $path));
+        if ($normalized === '') {
+            return null;
+        }
+
+        if (preg_match('/^https?:\/\//i', $normalized) || str_starts_with($normalized, '//')) {
+            $parsedPath = parse_url($normalized, PHP_URL_PATH);
+            if (is_string($parsedPath) && $parsedPath !== '') {
+                $normalized = str_replace('\\', '/', $parsedPath);
+            } else {
+                return $normalized;
+            }
+        }
+
+        $normalized = ltrim($normalized, '/');
+
+        if (str_starts_with($normalized, 'storage/')) {
+            $normalized = substr($normalized, strlen('storage/'));
+            return $normalized !== '' ? route('media.file', ['path' => $normalized]) : null;
+        }
+
+        if (str_starts_with($normalized, 'images/')) {
+            return asset($normalized);
+        }
+
+        return route('media.file', ['path' => $normalized]);
     }
 }
 

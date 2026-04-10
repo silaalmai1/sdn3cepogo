@@ -3,7 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>SD NEGERI 1-3 CEPOGO</title>
+    @php
+        $siteTitle = trim(
+            (string) ($settings['school_name'] ?? App\Models\Setting::get('school_name', 'SD Negeri 1-3 Cepogo')),
+        );
+    @endphp
+    <title>{{ $siteTitle !== '' ? $siteTitle : 'SD Negeri 1-3 Cepogo' }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {{-- Bootstrap + Icon --}}

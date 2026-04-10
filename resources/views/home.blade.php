@@ -2,6 +2,15 @@
 
 @php
     $schoolName = App\Models\Setting::get('school_name', 'SD Negeri 1-3 Cepogo');
+    $heroHomeTitle = App\Models\Setting::get('hero_home_title', $schoolName);
+    $schoolAddressRaw = App\Models\Setting::get(
+        'school_address',
+        "Desa Cepogo RT. 04 RW. 10\nKec. Kembang\nKab. Jepara\nProv. Jawa Tengah",
+    );
+    $schoolAddressInline = collect(preg_split('/\r\n|\r|\n/', (string) $schoolAddressRaw))
+        ->map(fn($item) => trim($item))
+        ->filter()
+        ->implode(', ');
 
     $welcomeSd1Name = App\Models\Setting::get('welcome_sd1_name', 'Nama Kepala SD 1');
     $welcomeSd1Title = App\Models\Setting::get('welcome_sd1_title', 'Kepala SD Negeri 1 Cepogo');
@@ -45,11 +54,11 @@
                     <div class="hero-badge mb-3">
                         <i class="bi bi-star-fill me-2"></i>Selamat Datang di Website
                     </div>
-                    <h1 class="hero-title">SD Negeri 1-3 Cepogo</h1>
+                    <h1 class="hero-title">{{ $heroHomeTitle }}</h1>
                     <div class="hero-divider my-3"></div>
                     <p class="hero-address">
                         <i class="bi bi-geo-alt-fill me-1"></i>
-                        Desa Cepogo RT. 04 RW. 10, Kec. Kembang, Kab. Jepara, Prov. Jawa Tengah
+                        {{ $schoolAddressInline }}
                     </p>
                     <div class="mt-4">
                         <a href="/tentang" class="btn btn-hero-primary me-2">Informasi Selengkapnya</a>

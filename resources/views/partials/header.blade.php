@@ -1,3 +1,10 @@
+@php
+    $socialFacebook = trim((string) ($settings['social_facebook_url'] ?? ''));
+    $socialInstagram = trim((string) ($settings['social_instagram_url'] ?? ''));
+    $socialYoutube = trim((string) ($settings['social_youtube_url'] ?? ''));
+    $socialTiktok = trim((string) ($settings['social_tiktok_url'] ?? ''));
+@endphp
+
 <div class="d-none d-md-block">
     {{-- TOPBAR --}}
     <div class="topbar py-2">
@@ -21,13 +28,29 @@
             </div>
 
             <div class="social-icon">
-                <i class="fa-brands fa-instagram"></i>
+                @if ($socialFacebook !== '')
+                    <a href="{{ $socialFacebook }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                @endif
 
-                <a href="https://www.youtube.com/@sdn1-3cepogo26" target="_blank">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
+                @if ($socialInstagram !== '')
+                    <a href="{{ $socialInstagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                @endif
 
-                <i class="fa-brands fa-tiktok"></i>
+                @if ($socialYoutube !== '')
+                    <a href="{{ $socialYoutube }}" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                @endif
+
+                @if ($socialTiktok !== '')
+                    <a href="{{ $socialTiktok }}" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                @endif
             </div>
 
         </div>
